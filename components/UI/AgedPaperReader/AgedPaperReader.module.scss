@@ -1,0 +1,53 @@
+@import "../../../variables";
+
+.wrapper {
+    overflow: hidden;
+    margin: 0;
+    .content-container {
+        width: 100%;
+    }
+
+    .content {
+        position: relative;
+        background: url("../../../images/botev-poet-journalist/paper.jpg");
+        background-size: 1000px;
+        background-position: center right;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        padding: 3rem;
+        z-index: 1;
+        filter: brightness(0.95) sepia(30%) saturate(80%);
+        overflow: auto;
+    }
+
+    @media screen and (max-width: 868px) {
+        .content {
+            padding: 1.5rem;
+        }
+    }
+
+    @media screen and (max-width: 560px) {
+        .content {
+            padding: 1rem;
+        }
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: #26231e;
+        mix-blend-mode: color-burn;
+    }
+
+    p {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 28pt;
+        color: #565046;
+        letter-spacing: 0.5px;
+        word-spacing: 3px;
+        text-shadow: 0.2px 0.2px 1.3px Sienna;
+    }
+}

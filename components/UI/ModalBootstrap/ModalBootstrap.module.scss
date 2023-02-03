@@ -1,0 +1,12 @@
+.modal {
+    --bs-modal-width: 100vh;
+    --bs-modal-bg: transperant;
+    --bs-modal-border-width: 0;
+    --bs-modal-header-border-width: 0;
+    height: 80vw;
+}
+
+.backdrop {
+    --bs-backdrop-opacity: 0.8;
+}
+// style={{height: '80vw', maxHeight: '80vh', width: '100vh', maxWidth: '90vw'}}

@@ -1,0 +1,24 @@
+@import '../../../variables';
+
+.chip-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-size: 0.8rem;
+    background-color: #727171;
+    padding: 0.5rem 0.6rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.icon__author {
+    margin-left: 0.6rem;
+    svg {
+        width: 1.2rem;
+    }
+}
+
+.chip__content {
+    @include align-to-icon;
+}

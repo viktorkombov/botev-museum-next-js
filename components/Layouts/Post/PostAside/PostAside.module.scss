@@ -1,0 +1,12 @@
+@import '../../../../variables';
+
+.container {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.title {
+    color: map-get($colors, links);
+}

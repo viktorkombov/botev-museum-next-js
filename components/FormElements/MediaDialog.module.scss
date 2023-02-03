@@ -1,0 +1,30 @@
+.file-dialog-wrapper {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.file-dialog-action-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+        gap: 0.3rem;
+        justify-content: flex-start;
+    }
+}
+
+.file-dialog-action-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.file-dialog-close-button {
+    position: absolute !important;
+    top: 0;
+    right: 1rem;
+}

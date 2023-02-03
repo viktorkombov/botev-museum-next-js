@@ -1,0 +1,17 @@
+strong {
+    font-size: 110%;
+}
+
+.small-screen {
+    display: none;
+    margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+    .small-screen {
+        display: block;
+    }
+    .wide-screen {
+        display: none;
+    }
+}

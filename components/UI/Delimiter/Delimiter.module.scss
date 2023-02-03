@@ -1,0 +1,18 @@
+.delimiter {
+    border-bottom: 1px solid black;
+    position: absolute;
+    bottom: 0.1rem;
+    width: 95%;
+    left: 0;
+    right: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.delimiter--white {
+    border-color: white;
+}
+
+.full-width {
+    width: 100%;
+}

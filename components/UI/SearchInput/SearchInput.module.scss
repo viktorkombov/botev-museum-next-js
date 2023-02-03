@@ -1,0 +1,22 @@
+.search-input-wrapper {
+    background: #eee !important;
+    padding: 2px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    .search-input {
+      padding-left: 1rem !important;
+      margin-left: 0.5rem !important;
+      flex: 1 !important;
+    }
+    @media screen and (max-width: 390px) {
+      input {
+        font-size: 0.9rem !important;
+      }
+    }
+    @media screen and (max-width: 330px) {
+      input {
+        font-size: 0.71rem !important;
+      }
+    }
+  }

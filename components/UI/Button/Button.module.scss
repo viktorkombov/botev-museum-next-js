@@ -1,0 +1,30 @@
+@import "../../../variables";
+.button {
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    background-color: transparent;
+    color: white;
+    border-color: transparent;
+    text-align: left;
+    transition: none;
+    border: 2px solid white;
+    .button-content {
+        background-image: linear-gradient(map-get($colors, links), map-get($colors, links));
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        transition: background-size 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+        background-size: 0 1px;
+    }
+    &:hover,
+    &:active {
+        // background-color: lighten(map-get($colors, main), 5%);
+        color: map-get($colors, links);
+        border-color: map-get($colors, links);
+        .button-content {
+            transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+            background-size: 100% 2px;
+            color: map-get($colors, links);
+        }
+    }
+}

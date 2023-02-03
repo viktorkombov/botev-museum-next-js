@@ -1,0 +1,49 @@
+@import "../../../variables";
+
+.grid-view-wrapper {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    h2 {
+        margin: 0;
+        padding: 0 1rem;
+        &:first-of-type {
+            padding-top: 1rem;
+        }
+    }
+    @media screen and (max-width: 1200px) {
+        .grid-view {
+            grid-template-columns: repeat(12, 1fr);
+        }
+    }
+    @media screen and (max-width: 800px) {
+        width: 95%;
+        .grid-view {
+            grid-template-columns: repeat(8, 1fr);
+        }
+    }
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        .grid-view {
+            grid-template-columns: repeat(4, 1fr);
+            .first-card {
+                grid-column: 4 span;
+            }            
+        }
+    }
+}
+
+.grid-view {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    grid-column: 4 span;
+}
+
+.first-card {
+    grid-column: 8 span;
+}

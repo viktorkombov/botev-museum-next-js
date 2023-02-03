@@ -1,0 +1,10 @@
+@import "../../../variables";
+
+.post {
+    display: contents;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    background-color: #fff;
+    align-content: flex-start;
+}
+

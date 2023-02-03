@@ -1,0 +1,67 @@
+@import "../../../../variables";
+
+.image-wrapper,
+.image-wrapper-right {
+    max-width: 300px;
+    margin: 0;
+
+    @media screen and (max-width: 950px) and (min-width: 800px) {
+        max-width: 220px;
+    }
+
+    @media screen and (max-width: 600px) {
+        float: none;
+        max-width: none;
+        width: 100%;
+        &.image-wrapper,
+        &.image-wrapper-right {
+            padding: 0 0 0.6rem 0 !important;
+        }
+        &.image-wrapper-first {
+            display: none;
+        }
+        &.small .image-title {
+            margin: 0.4rem 0 0 0;
+        }
+        &.without-title {
+            padding-bottom: 1rem !important;
+        }
+    }
+    &.small {
+        max-height: 300px;
+        max-width: 180px;
+        @media screen and (max-width: 410px) {
+            float: none;
+            margin-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .image-title {
+            font-size: 0.7rem;
+            // height: 0.9rem;
+        }
+
+        &.image-wrapper {
+            padding: 0 1rem 0rem 0rem;
+        }
+
+        &.image-wrapper-right {
+            padding: 0rem 0.5rem 0rem 1rem;
+        }
+    }
+}
+
+.image-wrapper {
+    float: left;
+    padding: 0 1.5rem 0rem 0rem;
+}
+
+.image-wrapper-right {
+    float: right;
+    padding: 0rem 0.5rem 0rem 1.5rem;
+}
+
+.image-title {
+    @include image-title;
+    margin-bottom: 0.3rem;
+}

@@ -1,0 +1,55 @@
+@import "@/styles/variables";
+
+.icon-circle {
+    color: #fff;
+    height: 1.63rem;
+    width: 1.63rem;
+    background-color: map-get($colors, links);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 0 1px 0.5px rgba(255, 255, 255);
+    cursor: pointer;
+    i,
+    div,
+    svg {
+        text-shadow: none;
+    }
+    svg {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+}
+
+.icon-circle:hover {
+    background-color: #ffffff;
+    color: map-get($colors, links);
+    box-shadow: 0 0 3px 1px map-get($colors, links);
+}
+
+.icon-circle-lang {
+    background-color: #ffffff;
+    color: map-get($colors, links);
+    box-shadow: 0 0 3px 1px map-get($colors, links);
+}
+
+.large {
+    height: 3.2rem;
+    width: 3.2rem;
+    svg {
+        height: 2.55rem;
+        width: 2.55rem;
+    }
+    font-size: 1.7rem;
+
+    @media screen and (max-width: 800px) {
+        height: 2rem;
+        width: 2rem;
+        svg {
+            height: 1.7rem;
+            width: 1.7rem;
+        }
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,9 @@
+.article {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 2rem;
+    align-content: flex-start;
+    -webkit-transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: #fff;
+}

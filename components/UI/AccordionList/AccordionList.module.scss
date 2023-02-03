@@ -1,0 +1,26 @@
+@import '../../../variables';
+
+.active {
+    .summary-background {
+        opacity: 1;
+    }
+}
+
+.summary-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 500ms;
+    border-top: 1px solid map-get($colors, secondary);
+}
+
+.no-results {
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

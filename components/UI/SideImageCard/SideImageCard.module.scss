@@ -1,0 +1,150 @@
+@import "../../../variables";
+
+.card {
+    display: flex;
+    justify-content: center;
+    // overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    button {
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        font-weight: 700;
+        background-color: transparent;
+        color: white;
+        border-color: transparent;
+        text-align: left;
+        transition: none;
+        border: 2px solid white;
+        .button-content {
+            background-image: linear-gradient(map-get($colors, links), map-get($colors, links));
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            transition: background-size 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+            background-size: 0 1px;
+        }
+    }
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+        .image-wrapper {
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 10px;
+        }
+    }
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background-color: lighten(map-get($colors, main), 5%);
+    transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.card:hover,
+.card:active {
+    cursor: pointer;
+    .image {
+        transform: scale(1.05);
+        // transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+        transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+    .content {
+        color: map-get($colors, links);
+        .title-wrapper,
+        .content-wrapper {
+            transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+            color: map-get($colors, links);
+            text-decoration: underline;
+        }
+    }
+    button {
+        // background-color: lighten(map-get($colors, main), 5%);
+        color: map-get($colors, links);
+        border-color: map-get($colors, links);
+        .button-content {
+            transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+            background-size: 100% 2px;
+            color: map-get($colors, links);
+        }
+    }
+    &::before {
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
+        background-color: lighten(map-get($colors, main), 12%);
+        z-index: 0;
+    }
+}
+
+.content {
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+    padding: 1.5rem;
+    transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53),
+    background-color 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    color: #fff;
+
+    .title-wrapper {
+        color: map-get($colors, secondary);
+    }
+
+    .button-wrapper {
+        position: absolute;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.5rem;
+        // button {
+        //     border-radius: 5px;
+        //     padding: 0.5rem 1rem;
+        //     font-weight: 700;
+        //     background-color: map-get($colors, secondary);
+        //     color: black;
+        //     border-color: transparent;
+        //     width: 100%;
+        //     text-align: left;
+        //     transition: none;
+        // }
+    }
+}
+
+.content-wrapper {
+    margin-bottom: 3.5rem;
+}
+
+.card > section {
+    flex: 1 1 0px;
+}
+
+.right {
+    border-radius: 10px;
+}
+
+.image-wrapper {
+    /* min-height: 700px; */
+    /* overflow: hidden; */
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    // z-index: 1;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

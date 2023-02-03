@@ -1,0 +1,76 @@
+@import "../../../variables";
+
+.image-wrapper {
+    @include image-wrapper;
+}
+
+.image-wrapper--gallery {
+    position: relative;
+    grid-column: 4 span;
+    img {
+        transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+    .image-title {
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+        left: 0.5rem;
+        color: #fff;
+        opacity: 0;
+        transition: opacity 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+        display: inline-block;
+        max-width: calc(100% - 10px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+        opacity: 0;
+        transition: opacity 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+    &:hover {
+        &::after {
+            opacity: 0.8;
+        }
+        img {
+            transform: scale(1.05);
+        }
+        .image-title {
+            opacity: 1;
+        }
+    }
+    @media screen and (max-width: 800px) {
+        grid-column: 6 span;
+    }
+    @media screen and (max-width: 450px) {
+        grid-column: 12 span;
+    }
+}
+
+.image-wrapper--post,
+.image-wrapper--page {
+    background-color: lighten(map-get($colors, main), 60%);
+    img {
+        transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+    &:hover {
+        img {
+            transform: scale(1.01);
+        }
+    }
+}
+
+.image-wrapper--post {
+    max-height: 450px;
+}
+
+.image-wrapper--page {
+    height: auto;
+}

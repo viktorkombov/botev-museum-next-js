@@ -1,0 +1,29 @@
+@import "../../../variables";
+
+.first-section-body {
+    @include section-common;
+    height: calc(100vh - 11rem);
+    max-height: calc(750px - 11rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .cards-wrapper {
+        @include cards-wrapper;
+    }
+
+    .card {
+        margin: 10px;
+        flex: 1;
+        height: 90%;
+    }
+
+    @media screen and (max-width: 1000px) {
+        padding-bottom: 1rem;
+    }
+
+    @media screen and (max-height: 620px) {
+        height: auto;
+        max-height: none;
+    }
+}

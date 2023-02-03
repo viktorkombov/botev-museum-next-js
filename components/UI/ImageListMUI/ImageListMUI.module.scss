@@ -1,0 +1,49 @@
+.image {
+    cursor: pointer;
+    width: 100% !important;
+    display: grid !important;
+    grid-template-rows: calc(100% - 2rem) auto;
+
+    .image-wrapper {
+        width: 100%;
+        img {
+            height: 100% !important;
+            width: 100% !important;
+            object-fit: cover;
+        }
+        .app-image {
+            object-fit: contain;
+        }
+    }
+
+    .title {
+        padding: 0.2rem 0 0 0.2rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        height: 100%;
+    }
+}
+
+.chosen-image-badge {
+    display: none;
+    position: absolute;
+    bottom: 50%;
+    width: 100%;
+    div {
+        color: white;
+        background-color: #ff0055;
+        width: fit-content;
+        padding: 0.5rem;
+    }
+}
+
+.active-image {
+    position: relative;
+    border: 5px solid #ff0055;
+    .chosen-image-badge {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

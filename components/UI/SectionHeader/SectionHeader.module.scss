@@ -1,0 +1,32 @@
+@import '../../../variables';
+
+.header {
+    position: relative;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    background-color: map-get($colors, main);
+    min-height: 5.5rem;
+    color: #fff;
+    position: relative;
+    ul {
+        margin: 0;
+    }
+    li {
+        list-style: none;
+    }
+
+    .header-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        padding: 2rem;
+        margin: 0 auto;
+    }
+}
+
+.header--white {
+    background-color: #fff;
+    color: #000;
+}
