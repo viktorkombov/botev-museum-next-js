@@ -1,0 +1,24 @@
+@import '@/styles/variables';
+.wrapper {
+    background-color: map-get($colors, main);
+    max-height: none;
+    height: fit-content;
+}
+
+.content {
+    color: #fff;
+    overflow: auto;
+    background-color: map-get($colors, main);
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.2rem 2rem 1.2rem;
+    p:first-of-type:first-letter {
+        @include first-letter;
+    }
+    .signature {
+        text-align: right;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+}

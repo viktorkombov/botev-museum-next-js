@@ -13,7 +13,7 @@ function WelcomeEN() {
             </SectionHeader>
             <section className={classes.content}>
                 <p>
-                    Welcome to the website of the National Museum "Hristo Botev" Kalofer. In it you will find historical data cartridge of the museum - a brilliant poet, journalist, philosopher, humanist, and revolitsioner leader.
+                    Welcome to the website of the National Museum &quot;Hristo Botev&quot; Kalofer. In it you will find historical data cartridge of the museum - a brilliant poet, journalist, philosopher, humanist, and revolitsioner leader.
                 </p>
                 <p><i>
                     Date information about museum objects and permanent exhibitions for the museum for upcoming events, the history and sights of Kalofer and captivating scenery. Believe will be helpful!

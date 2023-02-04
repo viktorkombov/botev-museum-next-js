@@ -1,14 +1,8 @@
-import { MapContainer, Marker, Popup, TileLayer, useMap, GeoJSON, useMapEvents } from 'react-leaflet';
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
-import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import 'leaflet-gesture-handling/dist/leaflet-gesture-handling';
-import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
 import 'leaflet.markercluster';
-import './Leaflet.scss';
 import classes from './LefletMap.module.scss';
-// import './Leaflet.scss';
 import { path, pathLine } from './data';
 import { Fragment, useEffect, useState } from 'react';
 import FloatingImage from '../../Layouts/FloatingImagesPage/FloatingImage';
@@ -24,7 +18,7 @@ const fullscreenchangeHanlder = (e) => {
     }
 }
 
-const LefletMap = props => {
+function LefletMap() {
     const [init, setInit] = useState(true);
 
     const generateLayer = (feature, latlng) => {

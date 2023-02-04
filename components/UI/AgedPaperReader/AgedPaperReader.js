@@ -3,9 +3,9 @@ import classes from './AgedPaperReader.module.scss';
 const AgedPaperReader = props => {
     let { title, content } = props.record;
 
-    const paragraphs = content.map(paragraph => {
+    const paragraphs = content.map((paragraph, i) => {
         return (
-            <p>{paragraph.split('\n').map(p => <Fragment>{p}<br /></Fragment>)}</p>
+            <p key={i}>{paragraph.split('\n').map((p, index) => <Fragment key={index}>{p}<br /></Fragment>)}</p>
         )
     })
 

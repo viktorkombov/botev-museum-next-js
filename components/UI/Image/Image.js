@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import classes from "./Image.module.scss";
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default ({
+const Image = ({
   rec,
   placeholderImg,
   errorImg,
@@ -39,8 +39,12 @@ export default ({
 
   return (
     <div className={wrapperClasses} onClick={onImageClick}>
-      <img {...props} alt={imgSrc} src={imgSrc} />
+      <img {...props} alt={rec?.tile} src={imgSrc} />
       {type === "gallery" && <h6 className={classes["image-title"]}>{rec.title}</h6>}
     </div>
   );
 };
+
+Image.displayName = 'Img';
+
+export default Image;

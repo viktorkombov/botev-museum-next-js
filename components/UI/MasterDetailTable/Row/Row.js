@@ -51,7 +51,7 @@ const Row = (props) => {
                             {!col.avatar ? (
                                 col.objectType ? (
                                     Object.values(row[col.id]).map((value) => (
-                                        <div className={col.classesRowInner}>{value}</div>
+                                        <div key={col.id} className={col.classesRowInner}>{value}</div>
                                     ))
                                 ) : (
                                     <div className={col.classesRowInner}>{row[col.id]}</div>

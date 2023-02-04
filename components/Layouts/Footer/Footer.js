@@ -32,7 +32,7 @@ const Footer = props => {
                     </div>
                     <div>
                         <ul className={classes.contacts}>
-                            <li><Room /><span>Адрес: гр. Калофер, пл. "Христо Ботев" 1</span></li>
+                            <li><Room /><span>Адрес: гр. Калофер, пл. &quot;Христо Ботев&quot; 1</span></li>
                             <li><Phone /><span>Телефон: 03353 23 21</span></li>
                             <li><Email /><span>E-mail: musei_botev@abv.bg</span></li>
                         </ul>

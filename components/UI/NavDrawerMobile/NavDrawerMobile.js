@@ -48,9 +48,8 @@ const NavDrawerMobile = ({lang, ...props}) => {
                                     <ListItemText primary="Начало" />
                                 </ListItemButton>
                             </ListItem>
-                            {accordions.map(accordion => <ListItem>
+                            {accordions.map(accordion => <ListItem key={accordion}>
                                 <Accordion
-                                    key={accordion}
                                     square
                                     disableGutters
                                     className={classes.accordion}

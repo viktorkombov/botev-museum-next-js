@@ -94,7 +94,7 @@ function Header ({lang, ...props}) {
               </article>
               <article className={classes['logo-text']}>
                 <div>Национален музей</div>
-                <div>"Христо Ботев"</div>
+                <div>&quot;Христо Ботев&quot;</div>
                 <div>гр. Калофер</div>
               </article>
             </section>

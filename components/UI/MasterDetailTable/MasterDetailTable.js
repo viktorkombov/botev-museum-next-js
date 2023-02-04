@@ -211,6 +211,7 @@ export default function MasterDetailTable({ originalRows, columns, filterBy = 't
                 </TableCell>}
                 {columns.map((col) => (
                   <TableCell
+                    key={col.id}
                     className={`${col.classesOuter} ${classes["header-cell"]} ${col.headerTextSubtitle && classes["header-cell-subtitle"]
                       }`}
                   >

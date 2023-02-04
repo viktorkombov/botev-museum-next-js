@@ -5,7 +5,7 @@ export const navigationItems = {
     },
     botev: {
         name: 'Христо Ботев',
-        items: [{ name: 'Родословие', link: '/bg/hristo-botev/rodoslovie' }, { name: 'Летопис', link: '/bg/hristo-botev/letopis' }, { name: 'Снимки на Ботев', link: '/bg/hristo-botev/snimki' }, { name: 'Лични вещи', link: '/bg/hristo-botev/lichni-vesthi' }, { name: 'Документи', link: '/bg/hristo-botev/dokumenti' }, { name: 'Ботев в изобразителното изкуство', link: '/bg/hristo-botev/botev-v-izobrazitelnoto-izkustvo' }],
+        items: [{ name: 'Родословие', link: '/bg/hristo-botev/rodoslovie' }, { name: 'Летопис', link: '/bg/hristo-botev/letopis' }, { name: 'Снимки на Ботев', link: '/bg/hristo-botev/snimki' }, { name: 'Лични вещи', link: '/bg/hristo-botev/lichni-veshti' }, { name: 'Документи', link: '/bg/hristo-botev/dokumenti' }, { name: 'Ботев в изобразителното изкуство', link: '/bg/hristo-botev/botev-v-izobrazitelnoto-izkustvo' }],
     },
     kalofer: {
         name: 'Калофер',

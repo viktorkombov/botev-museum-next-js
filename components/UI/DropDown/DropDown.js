@@ -18,6 +18,8 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     </a>
 ));
 
+CustomToggle.displayName = 'CustomToggle';
+
 const CustomMenu = React.forwardRef(
     ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
         const [value, setValue] = useState('');
@@ -39,6 +41,9 @@ const CustomMenu = React.forwardRef(
         );
     },
 );
+
+CustomMenu.displayName = 'CustomMenu';
+
 
 const DropDown = props => {
     const [isActive, setIsActive] = useState(false);
@@ -74,7 +79,7 @@ const DropDown = props => {
                         if (i === 1) {
                             itemClassList.push(classes['dropdown-item--first'])
                         }
-                        return <Dropdown.Item onClick={hideDropdown} as={Link} href={child.props.href} className={itemClassList.join(' ')} eventKey={i}>
+                        return <Dropdown.Item key={child.props.href} onClick={hideDropdown} as={Link} href={child.props.href} className={itemClassList.join(' ')} eventKey={i}>
                             <span onClick={hideDropdown}>{child}</span></Dropdown.Item>
                     })}
                 </Dropdown.Menu>

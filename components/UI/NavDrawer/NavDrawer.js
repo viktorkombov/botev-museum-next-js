@@ -56,9 +56,8 @@ const NavDrawer = ({ closeDrawer, toggleDrawer, open }) => {
                                 <ListItemText primary="Начало" />
                             </ListItemButton>
                         </ListItem>
-                        {accordions.map(accordion => <ListItem>
+                        {accordions.map(accordion => <ListItem key={accordion}>
                             <Accordion
-                                key={accordion}
                                 square
                                 disableGutters
                                 className="accordion"

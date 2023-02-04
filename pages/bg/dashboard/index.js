@@ -110,7 +110,7 @@ function Dashboard() {
             </SectionHeader>
             <section className={classes['main']}>
                 <h4>Потребител:</h4>
-                <h5>Национален музей "Христо Ботев"</h5>
+                <h5>Национален музей &quot;Христо Ботев&quot;</h5>
 
                 <MasterDetailTable originalRows={postsData} columns={dummyColumns} filterBy="Title" searchFieldPlaceHolder="Търси по заглавие" />
             </section>

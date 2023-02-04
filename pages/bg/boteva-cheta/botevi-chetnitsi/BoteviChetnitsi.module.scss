@@ -1,0 +1,70 @@
+@import "@/styles/variables";
+
+.image-title {
+    @include image-title;
+}
+
+.name-cell,
+.years-cell,
+.responsive-cell {
+    font-size: 0.81rem !important;
+}
+
+.name-cell {
+    text-align: left !important;
+    min-width: 8rem !important;
+    @media screen and (max-width: 600px) {
+        min-width: 7rem !important;
+        padding-left: 0.3rem !important;
+        padding-right: 0.5rem !important;
+    }
+    @media screen and (max-width: 390px) {
+        min-width: 5rem !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+.years-cell {
+    min-width: 6rem !important;
+    @media screen and (max-width: 600px) {
+        text-align: center !important;
+        min-width: 6rem !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.3rem !important;
+    }
+    @media screen and (max-width: 390px) {
+        display: none !important;
+    }
+}
+
+.header__text--name-title {
+    justify-content: center;
+}
+
+.header__text--years-old-title {
+    margin-top: -0.8rem;
+}
+
+.responsive-cell {
+    .row-inner:last-child {
+        font-weight: bolder;
+    }
+    min-width: 7rem !important;
+    @media screen and (max-width: 700px) {
+        display: none !important;
+    }
+}
+
+.small-screen {
+    display: none;
+    margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+    .small-screen {
+        display: block;
+    }
+    .wide-screen {
+        display: none;
+    }
+}

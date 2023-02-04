@@ -9,7 +9,7 @@ const ThreeCardsView = props => {
         <div className={`${classes['first-section-body']} ${props.className || ''}`}>
             <div className={classes['cards-wrapper']}>
                 {props.cards?.map(card => (
-                <div className={classes.card}>
+                <div key={card.ID} className={classes.card}>
                     <Card
                         link={"/bg/novini/" + card.ID} 
                         media

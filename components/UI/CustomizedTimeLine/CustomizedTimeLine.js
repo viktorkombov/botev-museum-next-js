@@ -247,7 +247,7 @@ export default function CustomizedTimeline() {
             }}
         >
             {items.map(item => (
-                <TimelineItem>
+                <TimelineItem key={item.time}>
                     <TimelineSeparator>
                         <TimelineDot sx={{ bgcolor: '#4b371c' }} >{/* <FastfoodIcon /> */}</TimelineDot>
                         <TimelineConnector />

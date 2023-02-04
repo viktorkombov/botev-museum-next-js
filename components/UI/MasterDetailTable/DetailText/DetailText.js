@@ -8,7 +8,7 @@ const DetailText = ({ detail }) => {
         <Fragment>
             <div style={{ height: '1rem' }}></div>
             <h5 className={classes['detail__content-heading']}>{detail.title}</h5>
-            {content.map(p => <p className={classes['detail__content-body']}>
+            {content.map((p, i) => <p key={i} className={classes['detail__content-body']}>
                 {p}
             </p>)}
             <div style={{ height: '1rem' }}></div>
