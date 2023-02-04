@@ -1,7 +1,4 @@
-import img from '../../../images/inc.jpg';
-import image from '../../../images/museum.jpg';
-import image1 from '../../../images/uchilishte.jpg';
-import Card from '../../UI/Card';
+import Card from '@/components/UI/Card';
 
 import classes from './ThreeCardsView.module.scss';
 

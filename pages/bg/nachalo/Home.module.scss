@@ -1,0 +1,173 @@
+@import "@/styles/variables";
+.home {
+    grid-column: 1 / -1;
+}
+
+.section1 {
+    @include section-common;
+    position: relative;
+    background-color: #fff;
+}
+
+.section--dark {
+    background-color: map-get($colors, main);
+}
+
+.text-section {
+    height: auto;
+    max-height: none;
+    .text-container {
+        line-height: 1.7rem;
+        margin: 0 auto;
+        padding: 1rem;
+        width: 90%;
+        max-width: 1000px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p:first-child {
+            &:first-letter {
+                font-family: "Philosopher", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
+                    Geneva, Verdana, sans-serif;
+                float: left;
+                font-size: 6.2em;
+                line-height: 0.8em;
+                font-weight: 900;
+                padding-right: 0.1em;
+            }
+        }
+    }
+    @media screen and (max-width: 800px) {
+        .text-container {
+            width: 100%;
+        }
+    }
+}
+
+.first-section-delimiter {
+    display: none;
+    @media screen and (max-width: 1000px) {
+        display: block;
+    }
+}
+
+.welcome {
+    position: relative;
+    color: #fff;
+    display: none;
+    article {
+        width: 80%;
+        padding: 1.6rem 2rem;
+    }
+    @media screen and (max-width: 1000px) {
+        display: block;
+    }
+    @media screen and (max-width: 600px) {
+        article {
+            width: 100%;
+        }
+    }
+}
+
+.first-section {
+    h1 {
+        display: none;
+        text-align: center;
+        margin: 1rem 1rem 0.5rem 1rem;
+    }
+
+    .first-section-more-link {
+        display: flex;
+        justify-content: flex-end;
+        width: 90%;
+        padding: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        @media screen and (max-width: 800px) {
+            justify-content: center;
+        }
+    }
+
+    table {
+        td {
+            padding-bottom: 0.2rem;
+            &:first-child {
+                white-space: nowrap;
+                font-weight: 900;
+                svg {
+                    height: 1.3rem;
+                    width: 1.3rem;
+                    margin-right: 0.3rem;
+                    padding-bottom: 0.2rem;
+                }
+            }
+            &:nth-child(2) {
+                padding: 0 1rem 0.2rem 1rem;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        table {
+            font-size: 0.95rem;
+        }
+
+        .first-section-body {
+            height: auto;
+            max-height: none;
+            padding-bottom: 1rem;
+        }
+    }
+    @media screen and (max-width: 800px) {
+        h1 {
+            display: block;
+        }
+        .first-section-header {
+            justify-content: center !important;
+            h2 {
+                display: none;
+            }
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .first-section-header {
+            table {
+                font-size: 0.9rem;
+                td:nth-child(2) {
+                    padding: 0 0.7rem 0.2rem 0.7rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 500px) {
+        .first-section-header {
+            padding: 1rem !important;
+            table {
+                font-size: 0.89rem;
+                td:nth-child(2) {
+                    padding: 0 0.5rem 0.2rem 0.5rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 440px) {
+        .first-section-header {
+            padding: 0.5rem !important;
+            table {
+                font-size: 0.78rem;
+                td:nth-child(2) {
+                    padding: 0 0.35rem 0.2rem 0.35rem;
+                }
+            }
+        }
+    }
+}
+
+.link {
+    color: map-get($colors, links);
+}
+
+// .three-cards-view {
+//     height: calc(100vh - 12rem);
+// }

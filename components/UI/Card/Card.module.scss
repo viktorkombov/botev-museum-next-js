@@ -1,4 +1,4 @@
-@import "../../../variables";
+@import "@/styles/variables";
 .card {
     background-color: map-get($colors, main);
     color: white;

@@ -5,7 +5,7 @@ import Card from "../Card";
 import Button from "../Button/Button";
 import { Info, KeyboardDoubleArrowDown } from "@mui/icons-material";
 import CarouselImg from "./CarouselImg";
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 import LoadingSpinner from "../LoadingSpinner";
 
 const CarouselBootstrap = (props) => {

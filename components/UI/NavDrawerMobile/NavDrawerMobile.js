@@ -14,16 +14,15 @@ const Backdrop = (props) => {
     return <div className={classes.backdrop} onClick={props.onClose}></div>
 }
 
-const NavDrawerMobile = (props) => {
-    const [lang, setLang] = useState('bg');
-    const navigate = useNavigate();
+const NavDrawerMobile = ({lang, ...props}) => {
+    const router = useRouter();
 
     const onLangIconClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
         props.onClose();
         const path = lang === 'en' ? '/bg/nachalo' : '/en/home';
-        navigate(path);
+        router.replace(path);
     }
 
     const accordions = ['museum', 'botev', 'kalofer', 'aboutUs'];
@@ -45,7 +44,7 @@ const NavDrawerMobile = (props) => {
                                 </Box>
                             </ListItem>
                             <ListItem >
-                                <ListItemButton onClick={props.onClose} component={Link} to="/bg/nachalo">
+                                <ListItemButton onClick={props.onClose} component={Link} href="/bg/nachalo">
                                     <ListItemText primary="Начало" />
                                 </ListItemButton>
                             </ListItem>
@@ -67,7 +66,7 @@ const NavDrawerMobile = (props) => {
                                     <AccordionDetails>
                                         <List>
                                             {navigationItems[accordion].items.map(item => <ListItem key={item.name} disablePadding>
-                                                <ListItemButton onClick={props.onClose} component={Link} to={item.link}>
+                                                <ListItemButton onClick={props.onClose} component={Link} href={item.link}>
                                                     <ListItemText primary={item.name} />
                                                 </ListItemButton>
                                             </ListItem>)}
@@ -76,19 +75,19 @@ const NavDrawerMobile = (props) => {
                                 </Accordion>
                             </ListItem>)}
                             <ListItem >
-                                <ListItemButton onClick={props.onClose} component={Link} to="/bg/boteva-cheta">
+                                <ListItemButton onClick={props.onClose} component={Link} href="/bg/boteva-cheta">
                                     <ListItemText primary="Ботева чета" />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem >
-                                <ListItemButton onClick={props.onClose} component={Link} to="/bg/botev-poet-publitsist">
+                                <ListItemButton onClick={props.onClose} component={Link} href="/bg/botev-poet-publitsist">
                                     <ListItemText primary="Ботев - поет и публицист" />
                                 </ListItemButton>
                             </ListItem>
                         </List>
                     </List>
                 </Box>
-            </nav>, portalElement)}
+            </nav>, document.getElementById('overlays'))}
         </Fragment>
     );
 }

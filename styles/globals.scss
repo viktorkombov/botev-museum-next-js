@@ -160,13 +160,13 @@ a {
     right: 10%;
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
     max-width: 1350px;
     margin: 0 auto;
     z-index: 3;
     bottom: 10%;
     @media screen and (max-width: 1000px) {
-      justify-content: end;
+      justify-content: flex-end;
     }
   }
 }

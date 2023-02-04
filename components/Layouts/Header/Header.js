@@ -27,10 +27,8 @@ const item = {
 
 const textItem = (text) => <span className={classes['navigation-text-item']}>{text}</span>;
 
-const Header = props => {
+function Header ({lang, ...props}) {
   const [colorChange, setColorchange] = useState(false);
-  const [openNavDrawer, setOpenNavDrawer] = useState(false);
-  const [lang, setLang] = useState('bg');
   const router = useRouter();
   const auth = useContext(AuthContext);
 
@@ -47,30 +45,6 @@ const Header = props => {
 
     window.addEventListener('scroll', changeNavbarColor);
   });
-
-  useEffect(() => {
-    const currLang = router.pathname.split('/')[1];
-    if (lang !== router.pathname.split('/')[1]) {
-      setLang(currLang)
-    }
-    if (openNavDrawer) {
-      closeDrawer();
-    }
-  }, [router.pathname]);
-
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setOpenNavDrawer(open);
-  };
-
-  const closeDrawer = () => {
-    setOpenNavDrawer(false);
-  };
 
   const onLangIconClick = (e) => {
     e.preventDefault();

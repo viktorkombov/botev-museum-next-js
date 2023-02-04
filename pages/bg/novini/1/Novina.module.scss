@@ -1,0 +1,48 @@
+@import "@/styles/variables";
+
+.content {
+    line-height: 1.7rem;
+    > p:first-child {
+        &:first-letter {
+            font-family: "Philosopher", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
+                Geneva, Verdana, sans-serif;
+            float: left;
+            font-size: 6.2em;
+            line-height: 0.8em;
+            font-weight: 900;
+            padding-right: 0.1em;
+        }
+    }
+}
+
+.heading {
+    position: relative;
+    padding: 0.5rem 0 2rem 0;
+    h1 {
+        padding-bottom: 0.5rem;
+    }
+}
+
+.image-wrapper {
+    @include image-wrapper;
+    max-height: 450px;
+    background-color: lighten(map-get($colors, main), 60%);
+    img {
+        transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+    &:hover {
+        img {
+            transform: scale(1.01);
+        }
+    }
+}
+
+.anchor {
+    color: map-get($colors, links);
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

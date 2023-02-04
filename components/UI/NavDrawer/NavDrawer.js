@@ -52,7 +52,7 @@ const NavDrawer = ({ closeDrawer, toggleDrawer, open }) => {
                             </Box>
                         </ListItem>
                         <ListItem >
-                            <ListItemButton component={Link} to="/bg/nachalo">
+                            <ListItemButton component={Link} href="/bg/nachalo">
                                 <ListItemText primary="Начало" />
                             </ListItemButton>
                         </ListItem>
@@ -74,7 +74,7 @@ const NavDrawer = ({ closeDrawer, toggleDrawer, open }) => {
                                 <AccordionDetails>
                                     <List>
                                         {navigationItems[accordion].items.map(item => <ListItem key={item.name} disablePadding>
-                                            <ListItemButton component={Link} to={item.link}>
+                                            <ListItemButton component={Link} href={item.link}>
                                                 <ListItemText primary={item.name} />
                                             </ListItemButton>
                                         </ListItem>)}
@@ -83,12 +83,12 @@ const NavDrawer = ({ closeDrawer, toggleDrawer, open }) => {
                             </Accordion>
                         </ListItem>)}
                         <ListItem >
-                            <ListItemButton component={Link} to="/bg/boteva-cheta">
+                            <ListItemButton component={Link} href="/bg/boteva-cheta">
                                 <ListItemText primary="Ботева чета" />
                             </ListItemButton>
                         </ListItem>
                         <ListItem >
-                            <ListItemButton component={Link} to="/bg/botev-poet-publitsist">
+                            <ListItemButton component={Link} href="/bg/botev-poet-publitsist">
                                 <ListItemText primary="Ботев - поет и публицист" />
                             </ListItemButton>
                         </ListItem>

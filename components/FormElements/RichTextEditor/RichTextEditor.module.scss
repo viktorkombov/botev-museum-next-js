@@ -1,4 +1,4 @@
-@import '../../../variables';
+@import '@/styles/variables';
 .editor-wrapper {
     a {
         color: map-get($colors, links);

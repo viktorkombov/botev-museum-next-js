@@ -1,5 +1,5 @@
 import { AccessTime, RemoveRedEye } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { convertToLocalDate } from '../../../utils/functions';
 import classes from './Card.module.scss';
 

@@ -1,7 +1,7 @@
 import Card from '../Card';
 import classes from './SideImageCard.module.scss';
 import image from '../../../images/museum.jpg'
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const SideImageCard = props => {
     const { link } = props;

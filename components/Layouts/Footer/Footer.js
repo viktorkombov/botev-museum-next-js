@@ -8,16 +8,8 @@ import IconRounded from '../../UI/IconRounded';
 import classes from './Footer.module.scss';
 
 const Footer = props => {
-    const [lang, setLang] = useState('bg');
+    const lang = props.lang;
     const ref = useRef(null);
-
-    const router = useRouter();
-    useEffect(() => {
-        const currLang = router.pathname.split('/')[1];
-        if (lang !== router.pathname.split('/')[1]) {
-            setLang(currLang)
-        }
-    }, [router.pathname]);
     // Optional callback to access the full DOMRect object if required.
     const optionalCallback = (entry) =>
         document.body.style.setProperty('--footer-height', (entry.height + 64) + 'px');

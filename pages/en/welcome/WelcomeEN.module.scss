@@ -1,0 +1,13 @@
+.content {
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.image-wrapper {
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+}

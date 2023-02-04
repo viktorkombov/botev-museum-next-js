@@ -1,36 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-import './FormButton.scss';
+import classes from './FormButton.module.scss';
 
 const FormButton = props => {
+    const sizeClass = classes[`button button--${props.size || 'default'}`];
+    const inverseClass = classes[`${props.inverse && 'button--inverse'}`];
+    const dangerClass = classes[`${props.danger && 'button--danger'}`];
+
+    const buttonClasses = `${sizeClass} ${inverseClass} ${dangerClass}`;
+
     if (props.href) {
         return (
-            <a
-                className={`button button--${props.size || 'default'} ${props.inverse &&
-                    'button--inverse'} ${props.danger && 'button--danger'}`}
-                href={props.href}
-            >
-                {props.children}
-            </a>
-        );
-    }
-    if (props.to) {
-        return (
             <Link
-                to={props.to}
-                exact={props.exact}
-                className={`button button--${props.size || 'default'} ${props.inverse &&
-                    'button--inverse'} ${props.danger && 'button--danger'}`}
+                className={buttonClasses}
+                href={props.href}
             >
                 {props.children}
             </Link>
         );
     }
+
     return (
         <button
-            className={`button button--${props.size || 'default'} ${props.inverse &&
-                'button--inverse'} ${props.danger && 'button--danger'}`}
+            className={buttonClasses}
             type={props.type}
             onClick={props.onClick}
             onMouseDown={props.onMouseDown}

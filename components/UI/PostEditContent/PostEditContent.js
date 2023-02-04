@@ -1,16 +1,14 @@
 import classes from './PostEditContent.module.scss';
 import RichTextEditor from '../../FormElements/RichTextEditor/RichTextEditor';
 import { convertToRaw, EditorState } from 'draft-js'
-import { withFormik } from 'formik';
-import { sendRequest } from '../../../utils/httpRequest';
 import FormButton from '../../FormElements/FormButton';
 
 import decorator from '../../FormElements/RichTextEditor/entities/decorator';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useHttpClient } from '../../../hooks/http-hook';
-import { useForm } from '../../../hooks/form-hook';
-import { AuthContext } from '../../../contexts/auth-context';
+import { userRouter } from 'next/router';
+import { useHttpClient } from '@/hooks/http-hook';
+import { useForm } from '@/hooks/form-hook';
+import { AuthContext } from '@/contexts/auth-context';
 import Input, { VALIDATOR_REQUIRE } from '../../FormElements/Input';
 import { Link, Paper } from '@mui/material';
 import { Delete, KeyboardArrowDown } from '@mui/icons-material';
@@ -19,7 +17,6 @@ import MediaDialog from '../../FormElements/MediaDialog';
 const PostEditContent = props => {
     const [showAddFileDialog, setShowAddFileDialog] = useState(false);
     const auth = useContext(AuthContext);
-    const navigate = useNavigate();
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
     const [formState, inputHandler, setFormData] = useForm(

@@ -20,23 +20,15 @@ import ActionButtonGroup from './EditorsControls/ActionButtonGroup';
 import decorator from './entities/decorator';
 import { validate } from '../Input';
 
-const inputReducer = (state, action) => {
-    switch (action.type) {
-        case 'CHANGE':
-            return {
-                ...state,
-                value: action.val,
-            };
-        case 'TOUCH': {
-            return {
-                ...state,
-                isTouched: true
-            };
-        }
-        default:
-            return state;
-    }
-};
+const NoSsr = (props) => {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, [])
+    return <>
+        {mounted ? props.children : null}
+    </>
+}
 
 function RichTextEditor(props) {
     const [editorState, setEditorState] = useState(props.initialValue)
@@ -94,16 +86,17 @@ function RichTextEditor(props) {
             <div className={classes['toggle-buttons']}>
                 <ActionButtonGroup editor={editor} editorState={editorState} onChange={onChange} />
             </div>
-            <Editor
-                blockRendererFn={mediaBlockRenderer}
-                ref={editor}
-                editorState={editorState}
-                handleKeyCommand={handleKeyCommand}
-                handleReturn={handleReturn}
-                onChange={onChange}
-                placeholder="Въведи съдържанието на публикацията"
-            />
-
+            <NoSsr>
+                <Editor
+                    blockRendererFn={mediaBlockRenderer}
+                    ref={editor}
+                    editorState={editorState}
+                    handleKeyCommand={handleKeyCommand}
+                    handleReturn={handleReturn}
+                    onChange={onChange}
+                    placeholder="Въведи съдържанието на публикацията"
+                />
+            </NoSsr>
 
         </Paper>
     );
