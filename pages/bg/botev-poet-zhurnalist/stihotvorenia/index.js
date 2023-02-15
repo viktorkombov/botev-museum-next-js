@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import FloatingImage from '@/components/Layouts/FloatingImagesPage/FloatingImage';
 import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/FloatingImagesPage';
 import Post from '@/components/Layouts/Post';
 import PostAside from '@/components/Layouts/Post/PostAside';
@@ -7,7 +6,6 @@ import PostBody from '@/components/Layouts/Post/PostBody';
 import AccordionList from '@/components/UI/AccordionList';
 import Card from '@/components/UI/Card';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
-import Gallery from '@/components/UI/Gallery';
 import { poems } from '@/utils/poems';
 import classes from './BotevPoems.module.scss';
 

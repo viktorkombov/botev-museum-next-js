@@ -1,17 +1,17 @@
 import ErrorBoundary from '@/components/ErrorBoundaries/ErrorBoundary';
 import Layout from '@/components/Layouts/layout/layout'
-import { LangContext } from '@/contexts/lang-context';
 import '@/styles/globals.scss'
+import { Provider } from 'next-auth/client';
 
 export default function App({ Component, pageProps }) {
 
   return (
     <ErrorBoundary>
-      <LangContext.Provider>
+      <Provider session={pageProps.session}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </LangContext.Provider>
+      </Provider>
     </ErrorBoundary>
   );
 }

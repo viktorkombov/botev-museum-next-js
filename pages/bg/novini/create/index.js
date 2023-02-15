@@ -3,14 +3,24 @@ import PostEditContent from '@/components/UI/PostEditContent';
 import SectionHeader from '@/components/UI/SectionHeader/SectionHeader';
 import classes from './NewPost.module.scss';
 import LoadingSpinner from '@/components/UI/LoadingSpinner';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client';
 
 function NewPost() {
     const [isLoading, setIsLoading] = useState(true);
+    const [session, loading] = useSession();
+    const router = useRouter();
+    const novinaId = router.query.novinaId;
+
   
     useEffect(() => {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 300);
+        if (session) {
+            setTimeout(() => {
+                setIsLoading(false);
+              }, 300);
+        } else {
+            router.replace('/bg/login')
+        }
     }, []);
 
     return (

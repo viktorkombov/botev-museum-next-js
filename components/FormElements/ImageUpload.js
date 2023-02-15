@@ -1,3 +1,5 @@
+import { baseUrl } from '@/utils/data';
+import Image from 'next/image';
 import React, { useRef, useState, useEffect } from 'react';
 import { useForm } from '../../hooks/form-hook';
 import { useHttpClient } from '../../hooks/http-hook';
@@ -105,9 +107,9 @@ const ImageUpload = props => {
         try {
             const formData = new FormData();
             formData.append('title', formState.inputs.title.value);
-            formData.append('image', formState.inputs.image.value);
+            formData.append('file', formState.inputs.image.value);
             const responseData = await sendRequest(
-                'http://localhost:5000/api/uploads',
+                `${baseUrl}api/uploads`,
                 'POST',
                 formData
             );
@@ -133,7 +135,7 @@ const ImageUpload = props => {
             />
             <div className={`image-upload ${props.center && 'center'}`}>
                 {props.filePreviewUrl && <div className={classes['preview']} >
-                    <img src={props.filePreviewUrl} alt="Preview" />
+                    <Image src={props.filePreviewUrl} alt="Preview" fill />
                 </div>}
                 {props.filePreviewUrl
                     ? (

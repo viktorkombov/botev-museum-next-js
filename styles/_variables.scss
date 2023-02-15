@@ -1,4 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@700&display=swap");
+@font-face {
+  font-family: "Philosopher";
+  src: url("../assets/Philosopher/Philosopher-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
 
 $colors: (
     main: #272626,

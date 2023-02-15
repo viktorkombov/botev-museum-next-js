@@ -88,6 +88,7 @@ function RichTextEditor(props) {
             </div>
             <NoSsr>
                 <Editor
+                    className={classes.editor}
                     blockRendererFn={mediaBlockRenderer}
                     ref={editor}
                     editorState={editorState}

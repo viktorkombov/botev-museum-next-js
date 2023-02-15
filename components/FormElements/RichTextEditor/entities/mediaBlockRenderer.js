@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+import { baseUrl } from "@/utils/data";
 import React from "react";
 import Image from "../../../UI/Image";
 
@@ -13,12 +15,13 @@ export const mediaBlockRenderer = block => {
 };
 
 const ImageComponent = props => {
+    console.log(props)
     if (!!props.rec) {
         return (
             <div style={{ maxWidth: '450px' }}>
                 <Image
                     type="post"
-                    rec={{ src: 'http://localhost:5000/' + props.rec.src }}
+                    rec={{ src: baseUrl + props.rec.src }}
                 />
                 <div className="image-title">
                     {props.rec.alt}

@@ -4,6 +4,7 @@ import { convertToRaw, EditorState } from 'draft-js'
 import { useState } from 'react';
 import { withFormik } from 'formik';
 import { sendRequest } from '../../utils/httpRequest';
+import { baseUrl } from '@/utils/data';
 
 const formikEnhancer = withFormik({
     mapPropsToValues: props => ({
@@ -12,7 +13,7 @@ const formikEnhancer = withFormik({
     }),
     handleSubmit: async (values, { setSubmitting }) => {
         await sendRequest(
-            'http://localhost:5000/api/posts',
+            baseUrl + 'api/posts',
             'POST',
             JSON.stringify({ title: values.email, content: convertToRaw(values.editorState.getCurrentContent()) }),
             [["Content-Type", "application/json"]]

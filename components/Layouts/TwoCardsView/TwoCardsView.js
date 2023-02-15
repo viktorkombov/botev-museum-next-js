@@ -1,6 +1,4 @@
 import SideImageCard from '../../UI/SideImageCard';
-import image from '../../../images/museum.jpg';
-import image1 from '../../../images/uchilishte.jpg';
 import classes from './TwoCardsView.module.scss';
 import SectionHeader from '../../UI/SectionHeader/SectionHeader';
 import { Children } from 'react';

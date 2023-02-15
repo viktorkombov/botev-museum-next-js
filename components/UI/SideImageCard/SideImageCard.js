@@ -2,6 +2,7 @@ import Card from '../Card';
 import classes from './SideImageCard.module.scss';
 import image from '../../../images/museum.jpg'
 import Link from 'next/link';
+import Image from 'next/image';
 
 const SideImageCard = props => {
     const { link } = props;
@@ -29,7 +30,7 @@ const SideImageCard = props => {
                 </section>
                 <section className={classes['image-wrapper']}>
                     <div className={classes['image']}>
-                        <img src={props.image} alt="" />
+                        <Image src={props.image} alt="" fill />
                     </div>
                 </section>
             </div>

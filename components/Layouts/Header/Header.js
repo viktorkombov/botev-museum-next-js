@@ -6,10 +6,11 @@ import { Add, ExitToApp, FacebookRounded, Menu, Person, Phone } from '@mui/icons
 import IconRounded from '../../UI/IconRounded';
 import { navigationItems, navigationItemsWitoutDropdowns } from '../../../utils/data';
 import { IconButton } from '@mui/material';
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { AuthContext } from '../../../contexts/auth-context';
+import Image from 'next/image';
+import { signOut, useSession } from 'next-auth/client';
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -27,10 +28,10 @@ const item = {
 
 const textItem = (text) => <span className={classes['navigation-text-item']}>{text}</span>;
 
-function Header ({lang, ...props}) {
+function Header({ lang, ...props }) {
   const [colorChange, setColorchange] = useState(false);
   const router = useRouter();
-  const auth = useContext(AuthContext);
+  const [session, loading] = useSession();
 
   useEffect(() => {
     const changeNavbarColor = () => {
@@ -53,6 +54,11 @@ function Header ({lang, ...props}) {
     router.replace(path);
   }
 
+  const onSignOutClick = (e) => {
+    e.preventDefault();
+    signOut();
+  }
+
   const baseItems = {
     classList: {
       active: classes.active,
@@ -72,16 +78,16 @@ function Header ({lang, ...props}) {
 
   return (
     <div className={classes['header-wrapper']}>
-      {auth.token && <div className={classes.auth}>
+      {session && <div className={classes.auth}>
         <ul className={classes['auth-desktop']}>
-          <li><Link href="/profile">Административен панел</Link></li>
+          <li><Link href="/bg/dashboard">Административен панел</Link></li>
           <li><Link href="/bg/novini/create">Създай нова публикация</Link></li>
-          <li><Link onClick={() => auth.logout()}>Изход</Link></li>
+          <li><a href="#" onClick={onSignOutClick}>Изход</a></li>
         </ul>
         <ul className={classes['auth-mobile']}>
-          <li><Link href="/bg/profile"><Person /></Link></li>
+          <li><Link href="/bg/dashboard"><Person /></Link></li>
           <li><Link href="/bg/novini/create"><Add /></Link></li>
-          <li><Link onClick={() => auth.logout()}><ExitToApp /></Link></li>
+          <li><a href="#" onClick={onSignOutClick}><ExitToApp /></a></li>
         </ul>
       </div>}
       <header className={colorChange ? `${classes.header} ${classes['header--scrolled']}` : classes.header}>
@@ -90,7 +96,7 @@ function Header ({lang, ...props}) {
           {lang !== 'en' ? (<Link href="/bg/nachalo" className={classes['logo-link']}>
             <section className={classes.logo}>
               <article className={classes['logo-image__wrapper']}>
-                <img src={logo} alt="logo" />
+                <Image src={logo} alt="logo" fill />
               </article>
               <article className={classes['logo-text']}>
                 <div>Национален музей</div>
@@ -101,7 +107,7 @@ function Header ({lang, ...props}) {
           </Link>) : (<Link href="/en/home" className={classes['logo-link']}>
             <section className={classes.logo}>
               <article className={classes['logo-image__wrapper']}>
-                <img src={logo} alt="logo" />
+                <Image src={logo} alt="logo" fill />
               </article>
               <article className={classes['logo-text']}>
                 <div>Hristo Botev</div>
@@ -113,52 +119,52 @@ function Header ({lang, ...props}) {
           <nav className={classes.navigation}>
             <div>
               {lang !== 'en' ? (<Fragment>
-                <motion.ul
+                <ul
                   variants={container}
                   initial="hidden"
                   animate="show"
                   className={classes['navigation-icons']}>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><Link href={navigationItemsWitoutDropdowns.botevaCheta.botevaCheta.link}>{textItem(navigationItemsWitoutDropdowns.botevaCheta.botevaCheta.title)}</Link></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><Link href={navigationItemsWitoutDropdowns.botevPoetJournalist.botevPoetJournalist.link}>{textItem(navigationItemsWitoutDropdowns.botevPoetJournalist.botevPoetJournalist.title)}</Link></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="phone" icon={<Phone />} /></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="facebook" icon={<FacebookRounded />} /></motion.li>
-                  {/* <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="youtube" icon={<YouTube />} /></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="instagram" icon={<Instagram />} /></motion.li> */}
-                  <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="lang" icon={lang === 'bg' ? 'en' : 'bg'} lang onClick={onLangIconClick} /></motion.li>
-                </motion.ul>
-                <motion.ul
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><Link href={navigationItemsWitoutDropdowns.botevaCheta.botevaCheta.link}>{textItem(navigationItemsWitoutDropdowns.botevaCheta.botevaCheta.title)}</Link></li>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><Link href={navigationItemsWitoutDropdowns.botevPoetJournalist.botevPoetJournalist.link}>{textItem(navigationItemsWitoutDropdowns.botevPoetJournalist.botevPoetJournalist.title)}</Link></li>
+                  <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="phone" icon={<Phone />} /></li>
+                  <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="facebook" icon={<FacebookRounded />} /></li>
+                  {/* <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="youtube" icon={<YouTube />} /></li>
+                  <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="instagram" icon={<Instagram />} /></li> */}
+                  <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="lang" icon={lang === 'bg' ? 'en' : 'bg'} lang onClick={onLangIconClick} /></li>
+                </ul>
+                <ul
                   variants={container}
                   initial="hidden"
                   animate="show"
                   className={classes['navigation-main']}>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/">{textItem('Начало')}</Link></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><NavBarDropDown dropDownItems={museumItems} /></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><NavBarDropDown dropDownItems={botevItems} /></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><NavBarDropDown dropDownItems={kaloferItems} /></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><NavBarDropDown dropDownItems={aboutUsItems} /></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/bg/novini">{textItem('Новини')}</Link></motion.li>
-                </motion.ul>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/">{textItem('Начало')}</Link></li>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><NavBarDropDown dropDownItems={museumItems} /></li>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><NavBarDropDown dropDownItems={botevItems} /></li>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><NavBarDropDown dropDownItems={kaloferItems} /></li>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><NavBarDropDown dropDownItems={aboutUsItems} /></li>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/bg/novini">{textItem('Новини')}</Link></li>
+                </ul>
               </Fragment>) : (<Fragment>
-                <motion.ul
+                <ul
                   variants={container}
                   initial="hidden"
                   animate="show"
                   className={`${classes['navigation-icons']} ${classes['navigation-icons--en']}`}>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="phone" icon={<Phone />} /></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="facebook" icon={<FacebookRounded />} /></motion.li>
-                  {/* <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="youtube" icon={<YouTube />} /></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="instagram" icon={<Instagram />} /></motion.li> */}
-                  <motion.li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="lang" icon={lang === 'bg' ? 'en' : 'bg'} lang onClick={onLangIconClick} /></motion.li>
-                </motion.ul>
-                <motion.ul
+                  <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="phone" icon={<Phone />} /></li>
+                  <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="facebook" icon={<FacebookRounded />} /></li>
+                  {/* <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="youtube" icon={<YouTube />} /></li>
+                  <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="instagram" icon={<Instagram />} /></li> */}
+                  <li variants={item} className={`${classes['navigation-list-item']} ${classes['icon-list-item']}`}><IconRounded link="lang" icon={lang === 'bg' ? 'en' : 'bg'} lang onClick={onLangIconClick} /></li>
+                </ul>
+                <ul
                   variants={container}
                   initial="hidden"
                   animate="show"
                   className={`${classes['navigation-main']} ${classes['navigation-main--en']}`}>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/en/home">{textItem('Home')}</Link></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/en/information-for-visitors">{textItem('Information for visitors')}</Link></motion.li>
-                  <motion.li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/en/contacts">{textItem('Contacts')}</Link></motion.li>
-                </motion.ul>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/en/home">{textItem('Home')}</Link></li>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/en/information-for-visitors">{textItem('Information for visitors')}</Link></li>
+                  <li variants={item} className={`${classes['navigation-list-item']}`}><Link href="/en/contacts">{textItem('Contacts')}</Link></li>
+                </ul>
               </Fragment>)}
             </div>
           </nav>

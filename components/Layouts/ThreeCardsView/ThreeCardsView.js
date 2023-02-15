@@ -1,4 +1,5 @@
 import Card from '@/components/UI/Card';
+import { baseUrl } from '@/utils/data';
 
 import classes from './ThreeCardsView.module.scss';
 
@@ -13,7 +14,7 @@ const ThreeCardsView = props => {
                     <Card
                         link={"/bg/novini/" + card.ID} 
                         media
-                        img={'http://localhost:5000/' + card.CoverImage}
+                        img={baseUrl + card.CoverImage}
                         title={card.Title}
                         content={card.Subtitle ? card.Subtitle : 'Калофер - градът на Ботев'}
                         count={card.Count}

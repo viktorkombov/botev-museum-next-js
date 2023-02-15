@@ -6,6 +6,8 @@ import PostEditContent from '@/components/UI/PostEditContent';
 import SectionHeader from '@/components/UI/SectionHeader/SectionHeader';
 import { useHttpClient } from '@/hooks/http-hook';
 import classes from './EditPost.module.scss';
+import { baseUrl } from '@/utils/data';
+import { useSession } from 'next-auth/client';
 
 const EditPost = props => {
     const [post, setPost] = useState({
@@ -14,20 +16,28 @@ const EditPost = props => {
         Content: ''
     });
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
-    const postId = useRouter().query.postId;
+    const [session, loading] = useSession();
+    const router = useRouter();
+    const novinaId = router.query.novinaId;
+
+    useEffect(() => {
+        if (!session) {
+            router.replace('/bg/login')
+        }
+    }, []);
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const responseData = await sendRequest(
-                    `http://localhost:5000/api/posts/${postId}`
+                    `${baseUrl}api/novini/${novinaId}`
                 );
-                responseData.Content = convertFromRaw(responseData.Content);
+                responseData.Content = convertFromRaw(JSON.parse(responseData.Content));
                 setPost(responseData);
             } catch (err) { console.log(err) }
         };
         fetchPosts();
-    }, [postId]);
+    }, [novinaId]);
 
     return (
         <Fragment>
@@ -40,7 +50,7 @@ const EditPost = props => {
             <SectionHeader>
                 <h2>Редактиране на публикация</h2>
             </SectionHeader>
-            {post.ID && <PostEditContent formTitle="Редактиране на публикация" id={post.ID} title={post.Title} editorState={post.Content} coverImage={post.CoverImage} method="PUT" />}
+            {post.ID && <PostEditContent isEdit formTitle="Редактиране на публикация" id={post.ID} title={post.Title} editorState={post.Content} coverImage={post.CoverImage} method="PUT" />}
 
         </Fragment>
     )

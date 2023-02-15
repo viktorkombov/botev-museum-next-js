@@ -1,7 +1,7 @@
 import { FacebookRounded, Phone } from '@mui/icons-material';
 import { Accordion, AccordionSummary, Box, List, ListItem, ListItemButton, ListItemText, Typography, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

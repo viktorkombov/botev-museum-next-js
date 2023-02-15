@@ -5,7 +5,7 @@ import FormButton from '../../FormElements/FormButton';
 
 import decorator from '../../FormElements/RichTextEditor/entities/decorator';
 import { useContext, useState } from 'react';
-import { userRouter } from 'next/router';
+import { useRouter, userRouter } from 'next/router';
 import { useHttpClient } from '@/hooks/http-hook';
 import { useForm } from '@/hooks/form-hook';
 import { AuthContext } from '@/contexts/auth-context';
@@ -13,11 +13,14 @@ import Input, { VALIDATOR_REQUIRE } from '../../FormElements/Input';
 import { Link, Paper } from '@mui/material';
 import { Delete, KeyboardArrowDown } from '@mui/icons-material';
 import MediaDialog from '../../FormElements/MediaDialog';
+import Image from 'next/image';
+import { baseUrl } from '@/utils/data';
 
 const PostEditContent = props => {
     const [showAddFileDialog, setShowAddFileDialog] = useState(false);
     const auth = useContext(AuthContext);
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const router = useRouter();
 
     const [formState, inputHandler, setFormData] = useForm(
         {
@@ -45,14 +48,17 @@ const PostEditContent = props => {
             const editorState = convertToRaw(formState.inputs.content.value.getCurrentContent());
             const subtitle = editorState.blocks.find(block => block.text);
             const responseData = await sendRequest(
-                'http://localhost:5000/api/posts' + (props.id ? `/${props.id}` : ''),
+               `${baseUrl}api/novini/${props.id ? props.id : ''}`,
                 props.method || 'POST',
                 JSON.stringify({ title: formState.inputs.title.value, content: JSON.stringify(editorState), coverImage: formState.inputs.coverImage.value, subtitle: subtitle?.text || '' }),
                 {
                     'Content-Type': 'application/json'
                 }
             );
-        } catch (err) { }
+            router.replace('/bg/novini/' + responseData.ID);
+        } catch (err) { 
+            console.log(err);
+        }
     };
 
     const onAddFileClick = (e) => {
@@ -121,11 +127,11 @@ const PostEditContent = props => {
                             <KeyboardArrowDown />
                         </Link>)}
                     {formState.inputs.coverImage.value && <div className={classes['preview']} >
-                        <img src={'http://localhost:5000/' + formState.inputs.coverImage.value} alt="Корица" />
+                        <Image src={baseUrl + formState.inputs.coverImage.value} alt="Корица" fill />
                     </div>}
                 </Paper>
                 <FormButton type="submit">
-                    Публикувай
+                    {props.isEdit ? 'Редактирай' : 'Публикувай'}
                 </FormButton>
             </form>
 

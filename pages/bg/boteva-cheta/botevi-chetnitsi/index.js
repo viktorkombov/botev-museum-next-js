@@ -6,13 +6,42 @@ import TwoColumnsView from '@/components/Layouts/TwoColumnsView';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import MasterDetailTable from '@/components/UI/MasterDetailTable';
 import DetailContent from '@/components/UI/MasterDetailTable/DetailContent';
-import image from "@/images/flag-uk.png";
 import classes from './BoteviChetnitsi.module.scss';
 import Link from 'next/link';
 import { uploadsUrl } from '@/utils/data';
 
-function BoteviChetnitsi() {
+function BoteviChetnitsi({ originalRows, columns }) {
     const pageTitle = 'Ботеви четници';
+
+    return (
+        <Fragment>
+            <CarouselBootstrap items={[{ src: `${uploadsUrl}/botevi-chetnitsi.jpg`, title: "Ботевите четници" }]}></CarouselBootstrap>
+            <TwoColumnsView history={{ nachalo: 'Начало', 'boteva-cheta': 'Ботева чета', 'istoriya': pageTitle }} table>
+                <h2>{pageTitle}</h2>
+                <FloatingImagesPage>
+                    <Fragment>
+                        <h3>Източници</h3>
+                        <FloatingImage className={classes['wide-screen']} small src="https://alba-books.com/image/cache/data/0003/zhrisk-372x505.jpg" right />
+                        <p>Спомените на оцелелите Ботеви четници са записани и издадени между 1900-1930 г. Най-голям принос в съставянето на първите списъци на четата имат Захари Стоянов, Андрей Матеев, Никола Обретенов, Илия Цанов, Г. Димитров, Никола Кючуков и Димитър Страшимиров.</p>
+                        <FloatingImage small className={classes['wide-screen']} src="https://knigizateb.com/1839/%D1%85%D1%80%D0%B8%D1%81%D1%82%D0%BE-%D0%B1%D0%BE%D1%82%D0%B5%D0%B2.jpg" />
+                        <p>Най-пълният и исторически достоверен списък на четата, е дело на Радка Стоянова, но и в него много от Ботевите четници са известни само с имената си, без по-подробни данни за живота им, без запазени снимки. Според този списък Ботевите четници са 205-ма.</p>
+                    </Fragment>
+                </FloatingImagesPage>
+                <Fragment>
+                    <h3>Състав на Ботевата чета</h3>
+                    <MasterDetailTable originalRows={originalRows} columns={columns} filterBy="name">
+                        <DetailContent />
+                    </MasterDetailTable>
+                    <br />
+                    <MaterialLink component={Link} href="/bg/boteva-cheta/istoria">Ботева чета - история и боен път</MaterialLink>
+                </Fragment>
+            </TwoColumnsView>
+        </Fragment>
+    )
+
+}
+
+export function getStaticProps() {
     function createData(id, imageUrl, name, years, born, died, content) {
         return {
             id,
@@ -46,7 +75,7 @@ function BoteviChetnitsi() {
         ),
         createData(
             3,
-            image,
+            "https://muzeibotev.com/clients/152/files/images/65.jpg",
             "Георги Апостолов Минчев",
             3,
             { date: "6 януари, 1848 г.", place: "Калофер" },
@@ -136,7 +165,7 @@ function BoteviChetnitsi() {
         ),
     ];
 
-    const dummyColumns = [
+    const columns = [
         {
             id: "name",
             headerText: "Име",
@@ -171,32 +200,12 @@ function BoteviChetnitsi() {
         },
     ];
 
-    return (
-        <Fragment>
-            <CarouselBootstrap items={[{ src: `${uploadsUrl}/botevi-chetnitsi.jpg`, title: "Ботевите четници" }]}></CarouselBootstrap>
-            <TwoColumnsView history={{ nachalo: 'Начало', 'boteva-cheta': 'Ботева чета', 'istoriya': pageTitle }} table>
-                <h2>{pageTitle}</h2>
-                <FloatingImagesPage>
-                    <Fragment>
-                        <h3>Източници</h3>
-                        <FloatingImage className={classes['wide-screen']} small src="https://alba-books.com/image/cache/data/0003/zhrisk-372x505.jpg" right />
-                        <p>Спомените на оцелелите Ботеви четници са записани и издадени между 1900-1930 г. Най-голям принос в съставянето на първите списъци на четата имат Захари Стоянов, Андрей Матеев, Никола Обретенов, Илия Цанов, Г. Димитров, Никола Кючуков и Димитър Страшимиров.</p>
-                        <FloatingImage small className={classes['wide-screen']} src="https://knigizateb.com/1839/%D1%85%D1%80%D0%B8%D1%81%D1%82%D0%BE-%D0%B1%D0%BE%D1%82%D0%B5%D0%B2.jpg" />
-                        <p>Най-пълният и исторически достоверен списък на четата, е дело на Радка Стоянова, но и в него много от Ботевите четници са известни само с имената си, без по-подробни данни за живота им, без запазени снимки. Според този списък Ботевите четници са 205-ма.</p>
-                    </Fragment>
-                </FloatingImagesPage>
-                <Fragment>
-                    <h3>Състав на Ботевата чета</h3>
-                    <MasterDetailTable originalRows={originalRows} columns={dummyColumns} filterBy="name">
-                        <DetailContent />
-                    </MasterDetailTable>
-                    <br />
-                    <MaterialLink component={Link}  href="/bg/boteva-cheta/istoria">Ботева чета - история и боен път</MaterialLink>
-                </Fragment>
-            </TwoColumnsView>
-        </Fragment>
-    )
-
+    return {
+        props: {
+            originalRows,
+            columns
+        }
+    }
 }
 
 export default BoteviChetnitsi;

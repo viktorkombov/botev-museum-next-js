@@ -1,1 +1,1 @@
-export { default } from './PostBody.js';
+export { default } from './PostBody';

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Fragment, useState } from "react";
 import CarouselBootstrap from "../CarouselBootstrap";
 import ModalBootstrap from "../ModalBootstrap";

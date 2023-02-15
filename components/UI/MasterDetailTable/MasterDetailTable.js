@@ -190,7 +190,7 @@ export default function MasterDetailTable({ originalRows, columns, filterBy = 't
           width: "100%",
           "*": { fontFamily: '"Comfortaa", sans-serif !important' },
         }}
-        elevation={1}
+        elevation={4}
       >
         <SearchInput placeHolder="Търси четници по име" requestSearch={requestSearch}/>
         <TableContainer className={classes["table-container"]}>

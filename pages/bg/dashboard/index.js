@@ -2,20 +2,23 @@ import { Delete, Edit } from '@mui/icons-material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
 import { Fragment, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import History from '@/components/Layouts/History';
-import TwoColumnsView from '@/components/Layouts/TwoColumnsView';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import MasterDetailTable from '@/components/UI/MasterDetailTable';
 import SectionHeader from '@/components/UI/SectionHeader/SectionHeader';
 import { useHttpClient } from '@/hooks/http-hook';
 import img from '@/images/museum.jpg';
 import classes from './Dashboard.module.scss';
+import { getSession, useSession } from 'next-auth/client';
+import { baseUrl } from '@/utils/data';
+import { useRouter } from 'next/router';
 
 function Dashboard() {
     const [postsData, setPostsData] = useState([]);
     const [currentAction, setCurrentAction] = useState('');
     const [currentPost, setCurrentPost] = useState({});
     const [openDialog, setOpenDialog] = useState(false);
+    const router = useRouter();
+    const [session, loading] = useSession();
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
     const showDialog = (action, post) => {
@@ -32,7 +35,7 @@ function Dashboard() {
             if (currentAction === 'DELETE') {
                 try {
                     const responseData = await sendRequest(
-                        'http://localhost:5000/api/posts/' + currentPost.ID,
+                        `${baseUrl}api/novini/${currentPost.ID}`,
                         'DELETE'
                     );
                     const postIndex = postsData.findIndex(post => post.ID === currentPost.ID);
@@ -41,9 +44,10 @@ function Dashboard() {
                 } catch (error) {
 
                 }
+            } else {
+                router.replace(`/bg/novini/${currentPost.ID}/edit`)
             }
         }
-
         setOpenDialog(false);
     }
 
@@ -53,20 +57,24 @@ function Dashboard() {
     }
 
     useEffect(() => {
-        const fetchArtilces = async () => {
-            try {
-                var url = new URL('http://localhost:5000/api/posts')
-                var params = { 'keys[]': ['ID', 'Title', 'Date'] }
-                url.search = new URLSearchParams(params).toString();
+        if (session) {
+            const fetchArtilces = async () => {
+                try {
+                    var url = new URL(baseUrl + 'api/novini')
+                    var params = { 'keys[]': ['ID', 'Title', 'Date'] }
+                    url.search = new URLSearchParams(params).toString();
 
-                const responseData = await sendRequest(
-                    url
-                );
+                    const responseData = await sendRequest(
+                        url
+                    );
 
-                setPostsData(responseData);
-            } catch (err) { }
-        };
-        fetchArtilces();
+                    setPostsData(responseData);
+                } catch (err) { }
+            };
+            fetchArtilces();
+        } else {
+            router.redirect('/bg/login')
+        }
 
     }, []);
 
@@ -76,7 +84,7 @@ function Dashboard() {
             template: row => {
                 return (
                     <div className={classes['action-buttons']}>
-                        <IconButton onClick={() => console.log('edit ' + row['ID'])}>
+                        <IconButton onClick={() => showDialog('EDIT', row)}>
                             <Edit />
                         </IconButton>
                         <IconButton onClick={() => showDialog('DELETE', row)}>
@@ -141,4 +149,24 @@ function Dashboard() {
         </Fragment>
     );
 }
+
+export async function getServerSideProps(context) {
+    const session = await getSession({ req: context.req });
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/bg/login',
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: {
+            session
+        }
+    }
+}
+
 export default Dashboard;

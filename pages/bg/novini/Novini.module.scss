@@ -48,7 +48,7 @@
     &:nth-child(10) {
         grid-column: 8 span;
     }
-    .skeleton {
+    &.skeleton {
         transform: none !important;
     }
 }

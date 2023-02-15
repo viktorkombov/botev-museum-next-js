@@ -14,7 +14,7 @@ import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import PageTransition from '@/components/UI/PageTransition';
 import Link from 'next/link';
 import { useHttpClient } from '@/hooks/http-hook';
-import { uploadsUrl } from '@/utils/data';
+import { uploadsUrl, baseUrl } from '@/utils/data';
 // import RichTextEditor from '@/components/FormElements/RichTextEditor';
 
 function Home(props) {
@@ -24,7 +24,7 @@ function Home(props) {
     useEffect(() => {
         const fetchArtilces = async () => {
             try {
-                var url = new URL('http://localhost:5000/api/posts')
+                var url = new URL(`${baseUrl}api/novini`)
                 var params = { 'columns': ['ID', 'Title', 'CoverImage', 'Subtitle', 'Count', 'Date'], orderby: 'DATE', dir: 'DESC', limit: 3 }
                 url.search = new URLSearchParams(params).toString();
 
@@ -88,7 +88,7 @@ function Home(props) {
                         <h1>Актуално</h1>
                         <ThreeCardsView cards={posts} className={classes['three-cards-view']}>
                             <div className={classes['first-section-more-link']}>
-                                <ButtonMaterial component={Link} className="button" href="/news" variant="outlined">Виж още новини</ButtonMaterial>
+                                <ButtonMaterial component={Link} className="button" href="/bg/novini" variant="outlined">Виж още новини</ButtonMaterial>
                             </div>
                         </ThreeCardsView>
                         <Delimiter />

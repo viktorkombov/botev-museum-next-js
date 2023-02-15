@@ -26,7 +26,7 @@ const CarouselBootstrap = (props) => {
     preloaderImg.addEventListener('error', loadHandler);
   }, []);
 
-  const slide = type !== 'gallery' ? true : false;
+  const slide = type !== 'gallery';
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -34,7 +34,7 @@ const CarouselBootstrap = (props) => {
 
   return (
     <div className={`${classes.wrapper} ${type === 'gallery' ? classes.gallery : ''}`}>
-      {isLoading && <LoadingSpinner asOverlay />}
+      {isLoading && <LoadingSpinner asOverlay positionAbsolute={type === 'gallery'} />}
 
       <Carousel
         className={`${classes.carousel} ${(type !== 'gallery' || items.length === 1) ? 'without-indicators' : ''} ${items.length === 1 ? 'without-arrows' : ''}`}

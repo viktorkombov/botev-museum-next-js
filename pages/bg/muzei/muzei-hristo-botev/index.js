@@ -4,10 +4,10 @@ import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/Floating
 import Post from '@/components/Layouts/Post';
 import PostAsideWrapper from '@/components/Layouts/Post/PostAsideWrapper';
 import PostBody from '@/components/Layouts/Post/PostBody';
-import Card from '@/components/UI/Card';
+import houseMuseum from '@/assets/uploads/muzey-4.jpg'
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import Gallery from '@/components/UI/Gallery';
-import { museumCardsContent } from '@/utils/data';
+import { baseUrl, museumCardsContent } from '@/utils/data';
 import classes from './HBNMuseum.module.scss';
 
 function HBNMuseum() {
@@ -43,7 +43,7 @@ function HBNMuseum() {
     ];
     return (
         <Fragment>
-            <CarouselBootstrap items={[{ src: "https://muzeibotev.com/clients/152/files/images/PC280963.JPG", title: pageTitle }]}></CarouselBootstrap>
+            <CarouselBootstrap items={[{ src: houseMuseum, title: pageTitle }]}></CarouselBootstrap>
             <Post>
                 <PostBody history={{ nachalo: 'Начало', null: 'Музей', muzei: 'Национален музей "Христо Ботев"' }}>
                     <FloatingImagesPage>

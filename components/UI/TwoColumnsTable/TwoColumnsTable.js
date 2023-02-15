@@ -11,12 +11,12 @@ import { Toolbar, Typography } from '@mui/material';
 
 export default function TwoColumnsTable(props) {
     const { data, title } = props;
-    const columnNames = Object.keys(data[0]);
-    return (
-        <Paper elevation={3} sx={{ width: '100%', mb: 2,  "*": { fontFamily: '"Comfortaa", sans-serif !important' }}}>
+    const columnNames = data && Object.keys(data[0]);
+    return (<React.Fragment>
+        {columnNames ? (<Paper elevation={3} sx={{ width: '100%', mb: 2, "*": { fontFamily: '"Comfortaa", sans-serif !important' } }}>
             <Toolbar>
                 <Typography
-                    sx={{ flex: '1 1 100%', py:"1rem"}}
+                    sx={{ flex: '1 1 100%', py: "1rem" }}
                     variant="h6"
                     id="tableTitle"
                     component="div"
@@ -25,7 +25,7 @@ export default function TwoColumnsTable(props) {
                 </Typography>
             </Toolbar>
             <TableContainer component={Paper}>
-                <Table  aria-labelledby="tableTitle">
+                <Table aria-labelledby="tableTitle">
                     <TableHead>
                         <TableRow>
                             <TableCell><strong>{columnNames[0]}</strong></TableCell>
@@ -47,6 +47,7 @@ export default function TwoColumnsTable(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </Paper>
+        </Paper>) : null}
+    </React.Fragment>
     );
 }

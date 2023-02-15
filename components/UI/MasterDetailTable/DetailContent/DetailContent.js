@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import Image from 'next/image';
 import classes from './DetailContent.module.scss';
 
 const DetailContent = ({ detail }) => {
@@ -6,7 +7,7 @@ const DetailContent = ({ detail }) => {
         <Box className={classes.wrapper} sx={{ margin: 1 }}>
             <div style={{ height: '1rem' }}></div>
             {detail.imageUrl && <div className={classes['image-wrapper']}>
-                <img src={detail.imageUrl} alt="снимка" />
+                <Image src={detail.imageUrl} alt="снимка" fill />
             </div>}
             <div>
                 <h5 className={classes['detail__content-heading']}>{detail.name}</h5>

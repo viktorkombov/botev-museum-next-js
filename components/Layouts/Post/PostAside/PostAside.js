@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Fragment, useState } from "react";
+import { baseUrl } from "@/utils/data";
+import { useEffect, useState } from "react";
 import { useHttpClient } from "../../../../hooks/http-hook";
 import PostSummary from "../../../UI/PostSummary";
 import classes from './PostAside.module.scss';
@@ -7,12 +7,11 @@ import classes from './PostAside.module.scss';
 const PostAside = props => {
     const [posts, setPosts] = useState([]);
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
-    const {children} = props;
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                var url = new URL('http://localhost:5000/api/posts')
+                var url = new URL(baseUrl + 'api/posts')
                 var params = { 'columns': ['ID', 'Title', 'Subtitle', 'Date'], orderby: 'DATE', dir: 'DESC', limit: 5, notEqualTo: props.id }
                 url.search = new URLSearchParams(params).toString();
 

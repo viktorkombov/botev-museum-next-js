@@ -1,8 +1,9 @@
+import {default as NextImage} from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import classes from "./Image.module.scss";
 
 // eslint-disable-next-line import/no-anonymous-default-export
-const Image = ({
+const CustomImage = ({
   rec,
   placeholderImg,
   errorImg,
@@ -39,12 +40,12 @@ const Image = ({
 
   return (
     <div className={wrapperClasses} onClick={onImageClick}>
-      <img {...props} alt={rec?.tile} src={imgSrc} />
+      <NextImage {...props} alt={rec?.title} src={imgSrc} fill />
       {type === "gallery" && <h6 className={classes["image-title"]}>{rec.title}</h6>}
     </div>
   );
 };
 
-Image.displayName = 'Img';
+CustomImage.displayName = 'CustomImage';
 
-export default Image;
+export default CustomImage;

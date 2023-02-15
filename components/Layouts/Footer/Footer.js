@@ -68,7 +68,7 @@ const Footer = props => {
                     <ul className={classes['news']}>
                         <li><Link href={navigationItemsWitoutDropdowns.botevaCheta.botevaCheta.link}>Ботва чета</Link></li>
                         <li><Link href={navigationItemsWitoutDropdowns.botevPoetJournalist.botevPoetJournalist.link}>Ботев - поет и публицист</Link></li>
-                        <li><Link href="/news">Новини</Link></li>
+                        <li><Link href="/bg/novini">Новини</Link></li>
                     </ul>
                 </section>
             </div>) : (<div className={classes.container}>

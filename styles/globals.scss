@@ -1,9 +1,43 @@
 // @import 'bootstrap/dist/css/bootstrap.css';
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
 @import "./variables";
 @import "leaflet/dist/leaflet.css";
-@import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
+@import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 @import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../assets/Comfortaa/Comfortaa-Light.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../assets/Comfortaa/Comfortaa-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../assets/Comfortaa/Comfortaa-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../assets/Comfortaa/Comfortaa-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../assets/Comfortaa/Comfortaa-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
 
 :root {
   --d: 700ms;
@@ -27,19 +61,14 @@ body {
   margin: 0;
   font-family: Comfortaa, Verdana, Geneva, sans-serif;
   box-sizing: border-box;
-  // /* overflow-x: hidden; */
 }
 
 #root {
   height: 100%;
-  // overflow-x: hidden;
 }
 
 * {
   box-sizing: border-box;
-  /* Works on Firefox */
-  // scrollbar-color: #808080 #272626;
-  /* scrollbar-width: thin; */
   margin: 0;
 }
 
@@ -52,6 +81,18 @@ a {
   color: #fff;
 }
 
+h5 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+img {
+  position: static !important;
+}
+
 .button {
   font-family: Comfortaa, Verdana, Geneva, sans-serif !important;
 }
@@ -60,19 +101,6 @@ a {
   font-family: "Comfortaa", sans-serif !important;
   font-weight: 600 !important;
 }
-
-// /* Works on Chrome, Edge, and Safari */
-// *::-webkit-scrollbar {
-//   width: 1rem;
-// }
-
-// *::-webkit-scrollbar-track {
-//   background: #272626;
-// }
-
-// *::-webkit-scrollbar-thumb {
-//   background-color: #808080;
-// }
 
 .carousel-inner {
   height: 100%;
@@ -96,23 +124,7 @@ a {
 .carousel-control-next,
 .carousel-control-prev {
   width: 10%;
-  // z-index: 2;
 }
-
-// .link {
-//   text-align: right;
-//   font-weight: 700;
-//   margin-right: 2rem;
-//   text-decoration: underline;
-//   color: #5799ef;
-// }
-
-// .caption {
-//   margin-top: 2rem;
-//   color: black;
-//   font-weight: 700;
-//   text-align: center;
-// }
 
 .container1 {
   width: 90%;
@@ -218,7 +230,6 @@ a {
   padding-bottom: 2.5rem;
   background-color: goldenrod;
   color: white;
-  // animation: moveInLeft 1s ease-out;
   h3 {
     animation: moveInRight 1s ease-out;
   }
@@ -264,14 +275,14 @@ a {
   overflow: hidden;
   height: 100%;
   img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
   }
 
   &:hover {
-      cursor: pointer;
+    cursor: zoom-in;
   }
 
   max-height: 450px;
@@ -328,7 +339,7 @@ h4 {
 .leaflet-popup-content,
 .leaflet-popup-scrolled {
   @media screen and (max-width: 410px) {
-      width: 200px !important;
+    width: 200px !important;
   }
 }
 
@@ -344,22 +355,8 @@ h4 {
   display: none;
 }
 
-// p {
-//   margin-top: 0;
-//   margin-bottom: 1rem;
-// }
-
-// .fake-footer {
-//   background: transparent;
-//   height: 151px;
-//   pointer-events: none;
-// }
-
-// .modal-open {
-//   padding-right: 0 !important;
-//   overflow: auto !important;
-// }
-
-// #root {
-//   margin-bottom: var(--footer-height);
-// }
+.DraftEditor-editorContainer {
+  div {
+    padding-bottom: 0.3rem;
+  }
+}

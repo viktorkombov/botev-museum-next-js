@@ -17,11 +17,11 @@ export const navigationItems = {
     }
 }
 
-export const baseUrl = 'https://muzeibotev.com';
+export const baseUrl = 'http://localhost:3000/';
 
 export const apiUrl = baseUrl + '/api';
 
-export const uploadsUrl = baseUrl + '/uploads';
+export const uploadsUrl = '/assets/uploads';
 
 
 export const navigationItemsWitoutDropdowns = {

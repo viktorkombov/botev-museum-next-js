@@ -8,8 +8,9 @@ import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import PageTransition from '@/components/UI/PageTransition';
 import { Pagination, Skeleton } from '@mui/material';
 import { useState } from 'react';
+import { baseUrl } from '@/utils/data';
 
-function GridView() {
+function GridView({totalRecords}) {
     const [isLoading, setIsLoading] = useState(true);
     const onPageChange = (e, page) => {
         setIsLoading(!isLoading)
@@ -22,126 +23,154 @@ function GridView() {
             <section className={classes['grid-view-wrapper']}>
                 <h2>Последни новини</h2>
                 {isLoading ? (<section className={classes['grid-view']}>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
-                            <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%"/>
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
+                    <Skeleton className={`${classes.card} ${classes.skeleton}`} height="100%" />
                 </section>)
-                :
-                (<section className={classes['grid-view']}>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={img}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={image}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={image1}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={image1}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={img}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={image}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={image1}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={image1}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={image1}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                    <div className={classes.card}>
-                        <Card
-                            link="asd"
-                            media
-                            img={image1}
-                            title="Часовникът на Ботев"
-                            content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                            button="Виж повече..."
-                        />
-                    </div>
-                </section>)}
+                    :
+                    (<section className={classes['grid-view']}>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={img}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={image}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={image1}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={image1}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={img}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={image}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={image1}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={image1}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={image1}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                        <div className={classes.card}>
+                            <Card
+                                link="asd"
+                                media
+                                img={image1}
+                                title="Часовникът на Ботев"
+                                content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
+                                button="Виж повече..."
+                            />
+                        </div>
+                    </section>)}
                 <div className={classes.paging}>
-                    <Pagination count={10} onChange={onPageChange}/>
+                    <Pagination count={Math.ceil(totalRecords / 10)} onChange={onPageChange} />
                 </div>
             </section>
         </PageTransition >
     );
+}
+
+export async function getServerSideProps(context) {
+    try {
+        var url = new URL(`${baseUrl}api/novini`)
+        var params = { 'columns': ['COUNT(*)']}
+        url.search = new URLSearchParams(params).toString();
+        
+        const mainArticle = await fetch(
+            url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const responseData = await mainArticle.json();
+        return {
+            props: {
+                totalRecords: responseData[0]['COUNT(*)'],
+            }
+        };
+    } catch (err) {
+        return {
+            props: {
+                totalRecords: 0
+            }
+        }
+    }
 }
 
 export default GridView;

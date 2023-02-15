@@ -4,11 +4,11 @@ import Link from 'next/link';
 import classes from './FormButton.module.scss';
 
 const FormButton = props => {
-    const sizeClass = classes[`button button--${props.size || 'default'}`];
+    const sizeClass = `button--${props.size || 'default'}`;
     const inverseClass = classes[`${props.inverse && 'button--inverse'}`];
     const dangerClass = classes[`${props.danger && 'button--danger'}`];
 
-    const buttonClasses = `${sizeClass} ${inverseClass} ${dangerClass}`;
+    const buttonClasses = `${classes.button} ${classes[sizeClass]} ${inverseClass} ${dangerClass}`;
 
     if (props.href) {
         return (

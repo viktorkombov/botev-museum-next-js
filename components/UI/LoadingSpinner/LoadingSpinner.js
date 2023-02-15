@@ -4,8 +4,8 @@ import classes from './LoadingSpinner.module.scss';
 
 const LoadingSpinner = props => {
   return (
-    <div className={`${props.asOverlay && classes['loading-spinner__overlay']}`}>
-      <div className={classes['lds-dual-ring']}></div>
+    <div className={`${props.asOverlay && classes['loading-spinner__overlay']} ${props.positionAbsolute && classes['position-absolute']}`}>
+      <div className={classes['lds-ellipsis']}><div></div><div></div><div></div><div></div></div>
     </div>
   );
 };

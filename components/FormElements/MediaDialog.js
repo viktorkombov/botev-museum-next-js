@@ -1,3 +1,4 @@
+import { baseUrl } from '@/utils/data';
 import { Close } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
@@ -20,13 +21,14 @@ const MediaDialog = props => {
 
     const fetchMedia = async () => {
         try {
+            var url = new URL(`${baseUrl}api/uploads`)
+            var params = { orderby: 'DATE', dir: 'DESC' }
+            url.search = new URLSearchParams(params).toString();
             const images = await sendRequest(
-                `http://localhost:5000/api/uploads`,
+                url,
                 'GET'
             );
-            setImages(images.sort((a, b) => {
-                return b.date - a.date;
-            }));
+            setImages(images);
         } catch (err) {
         }
     }

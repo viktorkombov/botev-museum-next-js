@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import SectionHeader from '@/components/UI/SectionHeader/SectionHeader';
 import classes from './WelcomeEN.module.scss';
+import Image from 'next/image';
 
 function WelcomeEN() {
     return (
@@ -19,7 +20,7 @@ function WelcomeEN() {
                     Date information about museum objects and permanent exhibitions for the museum for upcoming events, the history and sights of Kalofer and captivating scenery. Believe will be helpful!
                 </i></p>
                 <div className={classes['image-wrapper']}>
-                    <img src="https://muzeibotev.com/clients/152/files/images/934698_555896467786323_1042209498_n.jpg" alt="" />
+                    <Image src="https://muzeibotev.com/clients/152/files/images/934698_555896467786323_1042209498_n.jpg" alt="" fill />
                 </div>
             </section>
         </Fragment>
