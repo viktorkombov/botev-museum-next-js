@@ -16,13 +16,6 @@
         text-align: left;
         transition: none;
         border: 2px solid white;
-        .button-content {
-            background-image: linear-gradient(map-get($colors, links), map-get($colors, links));
-            background-position: center bottom;
-            background-repeat: no-repeat;
-            transition: background-size 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-            background-size: 0 1px;
-        }
     }
     @media screen and (max-width: 800px) {
         flex-direction: column;

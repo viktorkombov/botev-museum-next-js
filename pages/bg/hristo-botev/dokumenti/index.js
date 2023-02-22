@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import FloatingImage from '@/components/Layouts/FloatingImagesPage/FloatingImage';
 import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/FloatingImagesPage';
 import Post from '@/components/Layouts/Post';
@@ -9,41 +9,40 @@ import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import PageTransition from '@/components/UI/PageTransition';
 import { hristoBotevCardsContent, uploadsUrl } from '@/utils/data';
 import classes from './Documents.module.scss';
+import ModalBootstrap from '@/components/UI/ModalBootstrap';
 
-function Documents() {
+import dokumenti_0_img from '@/assets/uploads/do-grudov-1.png';
+import dokumenti_1_img from '@/assets/uploads/do-grudov-2.png';
+import dokumenti_2_img from '@/assets/uploads/ostavka.png';
+import dokumenti_3_img from '@/assets/uploads/proshtalno-pismo.png';
+import SEO from '@/components/SEO/SEO';
+
+function Dokumenti() {
+    const [showModal, setShowModal] = useState(false);
+    const [imageIndex, setImageIndex] = useState(false);
+
     const pageTitle = 'Документи';
+
+    const onImageClick = (index) => {
+        setImageIndex(index);
+        setShowModal(true);
+    };
     const images = [
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: `жовник и обществен деец, който учи в Одеса, съставя и превежда учебници, а майка му е от скромно калоферско семейство.[4] Освен Христо Ботев, двамата имат още осем деца: Ана (1850 – 1867), Петко (1852 – 1872), Стефан (1854 – 1890), Кирил (1856 – 1944), Тота (1859 – 1864), Генко (1861 – 1863), Генко (1863 – 1866) и Боян (1866 – 1885).[5]
-        Националният музей „Христо Ботев“ в Калофер Според някои източници Христо Ботев е роден в стая на калоферското училище, в която живеят родителите му. Малко по-късно в Калофер е построено ново училище и семейството наема къща на Генко Филов, в която Ботев прекарва първите няколко години от живота си. Тази къща е унищожена по време на Руско-турската война, но през 1940-те години е възстановена и превърната в Национален музей „Христо Ботев“.[6]
-        През 1854 година Ботьо Петков не успява да се споразумее с калоферската община за заплащането си и се премества в Карлово. Там семейството живее в къщата на майка му в Табашката махала, а Христо Ботев тръгва на училище, като негов учител е баща му. През 1858 година Ботьо Петков обвинява управата на карловската община, че се опитва да си присвои пари, завещани за училището, след което се връща в Калофер. Общината се опитва неуспешно да го настани в къща на живеещия в Цариград търговец Христо Тъпчилещов, след което семейството се настанява в къща на хаджи Нестор. След връщането им в Калофер Христо Ботев постъпва в местното трикласно училище, където учител е баща му.[7]
-        В Одеса и връщане в Калофер Датите са по Юлианския календар (стар стил), о`,
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280963.JPG",
-            title: "Никола Обретанов",
-        },
-        {
-            src: "https://muzeibotev.com/css/skins/custom/152/images/PC280921.JPG",
-            title: "Никола Войновски",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: "Никола Обретанов",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
-        },
+        { src: dokumenti_0_img.src, title: 'Писмо на Христо Ботев до Грудов, Кавалджиев и Странски, 17 май 1876 г, парахода „Радецки' },
+        { src: dokumenti_1_img.src, title: 'Писмо на Христо Ботев до Грудов, Кавалджиев и Странски, 17 май 1876 г, парахода „Радецки”' },
+        { src: dokumenti_2_img.src, title: 'Оставката на Христо Ботев от БРК в Букурещ, 30 септември 1875 г., Букурещ' },
+        { src: dokumenti_3_img.src, title: 'Прощалното писмо на Христо Ботев до семейството му, 17 май 1876 г., парахода „Радецки”' }
     ];
+
     return (
-        <PageTransition>
-            <CarouselBootstrap type="withCard" items={[{ src: `${uploadsUrl}/ostavka.png`, title: pageTitle }]}></CarouselBootstrap>
+        <Fragment>
+            <SEO
+                title={pageTitle}
+                description="Документалното наследство на Христо Ботев е една от най-съществените части на цялостното му творчество. То е запазено частично и е достигнало до нас в сравнително малък обем..."
+                image={images[2].src}
+                keywords="Документално наследство на Христо Ботев, ботев документи"
+            />
+            <CarouselBootstrap items={[{src: images[2].src, title: pageTitle}]}></CarouselBootstrap>
             <Post>
                 <PostBody history={{ nachalo: 'Начало', null: 'Христо Ботев', pageTitle: pageTitle }}>
                     <FloatingImagesPage>
@@ -53,26 +52,35 @@ function Documents() {
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
                                 <p style={{ display: 'none' }}>hidden</p>
                                 <p><strong>Писмо на Христо Ботев до Грудов, Кавалджиев и Странски, 17 май 1876 г, парахода „Радецки”</strong></p>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/p44_1.png" />
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/p44_2.png" />
+                                <FloatingImage src={images[0].src} onClick={() => onImageClick(0)} />
+                                <FloatingImage src={images[1].src} onClick={() => onImageClick(1)} />
                             </div>
                             <div style={{ overflow: 'auto', padding: '1rem 0', position: 'relative' }}>
                                 <p style={{ display: 'none' }}>hidden</p>
                                 <p><strong>Оставката на Христо Ботев от БРК в Букурещ, 30 септември 1875 г., Букурещ</strong></p>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/p70.png" />
+                                <FloatingImage src={images[2].src} onClick={() => onImageClick(2)} />
                             </div>
                             <div style={{ overflow: 'auto', padding: '1rem 0', position: 'relative' }}>
                                 <p style={{ display: 'none' }}>hidden</p>
                                 <p><strong>Прощалното писмо на Христо Ботев до семейството му, 17 май 1876 г., парахода „Радецки”</strong></p>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/p43.png" />
+                                <FloatingImage src={images[3].src} onClick={() => onImageClick(3)} />
                             </div>
+                        </Fragment>
+                        <Fragment>
+                            <ModalBootstrap show={showModal} close={() => setShowModal(false)}>
+                                <CarouselBootstrap
+                                    items={images}
+                                    index={imageIndex}
+                                    type="gallery"
+                                ></CarouselBootstrap>
+                            </ModalBootstrap>
                         </Fragment>
                     </FloatingImagesPage>
                 </PostBody>
                 <PostAsideWrapper cardsData={hristoBotevCardsContent} currentPageTitle={pageTitle} />
             </Post>
-        </PageTransition>
+        </Fragment>
     );
 }
 
-export default Documents;
+export default Dokumenti;

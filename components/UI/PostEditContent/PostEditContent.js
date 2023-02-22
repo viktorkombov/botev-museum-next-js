@@ -4,14 +4,15 @@ import { convertToRaw, EditorState } from 'draft-js'
 import FormButton from '../../FormElements/FormButton';
 
 import decorator from '../../FormElements/RichTextEditor/entities/decorator';
-import { useContext, useState } from 'react';
+import { forwardRef, Fragment, useContext, useState } from 'react';
 import { useRouter, userRouter } from 'next/router';
 import { useHttpClient } from '@/hooks/http-hook';
 import { useForm } from '@/hooks/form-hook';
 import { AuthContext } from '@/contexts/auth-context';
 import Input, { VALIDATOR_REQUIRE } from '../../FormElements/Input';
-import { Link, Paper } from '@mui/material';
-import { Delete, KeyboardArrowDown } from '@mui/icons-material';
+import { IconButton, Link, Paper, Snackbar, Button } from '@mui/material';
+import { Close, Delete, KeyboardArrowDown } from '@mui/icons-material';
+import MuiAlert from '@mui/material/Alert';
 import MediaDialog from '../../FormElements/MediaDialog';
 import Image from 'next/image';
 import { baseUrl } from '@/utils/data';
@@ -19,6 +20,8 @@ import { baseUrl } from '@/utils/data';
 const PostEditContent = props => {
     const [showAddFileDialog, setShowAddFileDialog] = useState(false);
     const auth = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [openSnackbar, setOpenSnackbar] = useState(false);
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const router = useRouter();
 
@@ -48,7 +51,7 @@ const PostEditContent = props => {
             const editorState = convertToRaw(formState.inputs.content.value.getCurrentContent());
             const subtitle = editorState.blocks.find(block => block.text);
             const responseData = await sendRequest(
-               `${baseUrl}api/novini/${props.id ? props.id : ''}`,
+                `${baseUrl}api/novini/${props.id ? props.id : ''}`,
                 props.method || 'POST',
                 JSON.stringify({ title: formState.inputs.title.value, content: JSON.stringify(editorState), coverImage: formState.inputs.coverImage.value, subtitle: subtitle?.text || '' }),
                 {
@@ -56,8 +59,9 @@ const PostEditContent = props => {
                 }
             );
             router.replace('/bg/novini/' + responseData.ID);
-        } catch (err) { 
-            console.log(err);
+            handleSnackbarOpen(responseData.Title)
+        } catch (err) {
+            handleSnackbarOpen(err.message)
         }
     };
 
@@ -88,6 +92,23 @@ const PostEditContent = props => {
         e.preventDefault();
         inputHandler('coverImage', '');
     }
+
+    const handleSnackbarOpen = (message) => {
+        setErrorMessage(message);
+        setOpenSnackbar(true);
+    };
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnackbar(false);
+    };
+
+    const Alert = forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
 
     return (
         <div className={classes.form} >
@@ -134,7 +155,14 @@ const PostEditContent = props => {
                     {props.isEdit ? 'Редактирай' : 'Публикувай'}
                 </FormButton>
             </form>
-
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}>
+                <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+                    {errorMessage}
+                </Alert>
+            </Snackbar>
             <MediaDialog
                 open={showAddFileDialog}
                 onAddFile={onAddFile}

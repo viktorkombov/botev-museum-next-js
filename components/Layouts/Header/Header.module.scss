@@ -8,7 +8,7 @@
 
 .auth {
     color: #fff;
-    background-color:#000;
+    background-color: #000;
     border-bottom: 0.5px solid #fff;
 
     ul {
@@ -148,7 +148,8 @@
 }
 
 .logo-link {
-    &:hover, &:active {
+    &:hover,
+    &:active {
         color: #fff !important;
     }
 }
@@ -198,7 +199,6 @@
 }
 
 .navigation-main {
-
     li {
         margin-left: 1rem;
     }
@@ -259,14 +259,15 @@
     white-space: nowrap;
 }
 
-.navigation-main a span.navigation-text-item {
-    background-image: linear-gradient(map-get($colors, secondary), map-get($colors, secondary));
+.navigation-main div span.navigation-text-item {
     transition: none;
+    background-image: linear-gradient(map-get($colors, secondary), map-get($colors, secondary));
 }
 
-.navigation-main a span.navigation-dropdown-arrow,
-.navigation-main a span.navigation-text-item {
+.navigation-main div span.navigation-dropdown-arrow,
+.navigation-main div span.navigation-text-item {
     padding-bottom: 1rem;
+    cursor: pointer;
 }
 
 .icon-list-item {

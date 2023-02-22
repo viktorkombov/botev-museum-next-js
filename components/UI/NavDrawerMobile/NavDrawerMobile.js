@@ -14,7 +14,7 @@ const Backdrop = (props) => {
     return <div className={classes.backdrop} onClick={props.onClose}></div>
 }
 
-const NavDrawerMobile = ({lang, ...props}) => {
+const NavDrawerMobile = ({ lang, ...props }) => {
     const router = useRouter();
 
     const onLangIconClick = (e) => {
@@ -37,52 +37,71 @@ const NavDrawerMobile = ({lang, ...props}) => {
                             <ListItem >
                                 <Box>
                                     <ul className={classes['social-networks-links']}>
-                                        <li className={classes['icon-list-item']}><IconRounded onClick={props.onClose} link="telephone" icon={<Phone />} /></li>
-                                        <li className={classes['icon-list-item']}><IconRounded onClick={props.onClose} link="facebook" icon={<FacebookRounded />} /></li>
+                                        {/* <li className={classes['icon-list-item']}><IconRounded onClick={props.onClose} link="telephone" icon={<Phone />} /></li>
+                                        <li className={classes['icon-list-item']}><IconRounded onClick={props.onClose} link="facebook" icon={<FacebookRounded />} /></li> */}
+                                        <li className={classes['icon-list-item']}><IconRounded onClick={props.onClose} link="https://www.facebook.com/muzeibotev" icon={<FacebookRounded />} /></li>
                                         <li className={classes['icon-list-item']}><IconRounded icon={lang === 'bg' ? 'en' : 'bg'} lang onClick={onLangIconClick} /></li>
                                     </ul>
                                 </Box>
                             </ListItem>
-                            <ListItem >
+                            {lang !== 'en' ? (<Fragment><ListItem >
                                 <ListItemButton onClick={props.onClose} component={Link} href="/bg/nachalo">
                                     <ListItemText primary="Начало" />
                                 </ListItemButton>
                             </ListItem>
-                            {accordions.map(accordion => <ListItem key={accordion}>
-                                <Accordion
-                                    square
-                                    disableGutters
-                                    className={classes.accordion}
-                                    TransitionProps={{ timeout: 0 }}
-                                >
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
+                                {accordions.map(accordion => <ListItem key={accordion}>
+                                    <Accordion
+                                        square
+                                        disableGutters
+                                        className={classes.accordion}
+                                        TransitionProps={{ timeout: 0 }}
                                     >
-                                        <Typography sx={{ pr: "2rem" }}>{navigationItems[accordion].name}</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <List>
-                                            {navigationItems[accordion].items.map(item => <ListItem key={item.name} disablePadding>
-                                                <ListItemButton onClick={props.onClose} component={Link} href={item.link}>
-                                                    <ListItemText primary={item.name} />
-                                                </ListItemButton>
-                                            </ListItem>)}
-                                        </List>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </ListItem>)}
-                            <ListItem >
-                                <ListItemButton onClick={props.onClose} component={Link} href="/bg/boteva-cheta">
-                                    <ListItemText primary="Ботева чета" />
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem >
-                                <ListItemButton onClick={props.onClose} component={Link} href="/bg/botev-poet-publitsist">
-                                    <ListItemText primary="Ботев - поет и публицист" />
-                                </ListItemButton>
-                            </ListItem>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1a-content"
+                                            id="panel1a-header"
+                                        >
+                                            <Typography sx={{ pr: "2rem" }}>{navigationItems[accordion].name}</Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <List>
+                                                {navigationItems[accordion].items.map(item => <ListItem key={item.name} disablePadding>
+                                                    <ListItemButton onClick={props.onClose} component={Link} href={item.link}>
+                                                        <ListItemText primary={item.name} />
+                                                    </ListItemButton>
+                                                </ListItem>)}
+                                            </List>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </ListItem>)}
+                                <ListItem >
+                                    <ListItemButton onClick={props.onClose} component={Link} href="/bg/boteva-cheta">
+                                        <ListItemText primary="Ботева чета" />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem >
+                                    <ListItemButton onClick={props.onClose} component={Link} href="/bg/botev-poet-zhurnalist">
+                                        <ListItemText primary="Ботев - поет и публицист" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Fragment>) :
+                                (<Fragment>
+                                    <ListItem>
+                                        <ListItemButton onClick={props.onClose} component={Link} href="/en/home">
+                                            <ListItemText primary="Home" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemButton onClick={props.onClose} component={Link} href="/en/information-for-visitors">
+                                            <ListItemText primary="Information for visitors" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemButton onClick={props.onClose} component={Link} href="/en/contacts">
+                                            <ListItemText primary="Contacts" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Fragment>)}
                         </List>
                     </List>
                 </Box>

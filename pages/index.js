@@ -16,7 +16,7 @@ export default function Home() {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   return {
     redirect: {
       destination: '/bg/nachalo',

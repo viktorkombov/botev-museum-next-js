@@ -1,24 +1,25 @@
 import { Link } from '@mui/material';
 import { Fragment } from 'react';
-import FloatingImage from '@/components/Layouts/FloatingImagesPage/FloatingImage';
-import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/FloatingImagesPage';
 import Post from '@/components/Layouts/Post';
-import PostAside from '@/components/Layouts/Post/PostAside';
 import PostAsideWrapper from '@/components/Layouts/Post/PostAsideWrapper';
 import PostBody from '@/components/Layouts/Post/PostBody';
-import Card from '@/components/UI/Card';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
-import Delimiter from '@/components/UI/Delimiter';
-import Gallery from '@/components/UI/Gallery';
 import TwoColumnsTable from '@/components/UI/TwoColumnsTable';
-import { aboutUsCardsContent, uploadsUrl } from '@/utils/data';
-import classes from './InformationForVisitors.module.scss';
+import { aboutUsCardsContent } from '@/utils/data';
+import houseMuseumIMG from '@/assets/uploads/muzey-10.jpg';
+import SEO from '@/components/SEO/SEO';
 
 function InformationForVisitors({ ticketsTableData, rentTableData }) {
     const pageTitle = 'Дейности и услуги';
     return (
         <Fragment>
-            <CarouselBootstrap items={[{ src: `${uploadsUrl}/muzey-9.jpg`, title: pageTitle }]}></CarouselBootstrap>
+            <SEO
+                title={pageTitle}
+                description="Дейности и услуги - Музей „Христо Ботев”"
+                image={houseMuseumIMG.src}
+                keywords="музей христо ботев дейности и услуги, музей христо ботев цени, музей ботев цени билети"
+            />
+            <CarouselBootstrap items={[{ src: houseMuseumIMG.src, title: pageTitle }]}></CarouselBootstrap>
             <Post>
                 <PostBody history={{ nachalo: 'Начало', null: 'За нас', pageTitle: pageTitle }}>
                     <div style={{ paddingBottom: '2rem' }}>
@@ -45,7 +46,6 @@ function InformationForVisitors({ ticketsTableData, rentTableData }) {
                     </div>
                 </PostBody>
                 <PostAsideWrapper cardsData={aboutUsCardsContent} currentPageTitle={pageTitle} />
-
             </Post>
         </Fragment>
 

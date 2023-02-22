@@ -6,8 +6,7 @@ import Link from 'next/link';
 import classes from './DropDown.module.scss';
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-    <a
-        href=""
+    <div
         ref={ref}
         onClick={(e) => {
             e.preventDefault();
@@ -15,7 +14,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         }}
     >
         {children}
-    </a>
+    </div>
 ));
 
 CustomToggle.displayName = 'CustomToggle';
@@ -64,24 +63,17 @@ const DropDown = props => {
 
     return (
         <Dropdown onToggle={onToggle} className={isActive ? props.activeClass : ''} show={show} onMouseEnter={showDropdown}
-        onMouseLeave={hideDropdown} >
-        {/* <Dropdown onToggle={onToggle} className={isActive ? props.activeClass : ''}> */}
+            onMouseLeave={hideDropdown} >
+            {/* <Dropdown onToggle={onToggle} className={isActive ? props.activeClass : ''}> */}
             <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
                 {React.Children.toArray(props.children)[0]}
             </Dropdown.Toggle>
             <Fade in={isActive}>
                 <Dropdown.Menu as={CustomMenu} className={classes['dropdown-menu']}>
-                    {React.Children.toArray(props.children).map((child, i, array) => {
-                        const itemClassList = [classes['dropdown-item']];
-                        if (i === array.length - 1) {
-                            itemClassList.push(classes['dropdown-item--last'])
-                        }
-                        if (i === 1) {
-                            itemClassList.push(classes['dropdown-item--first'])
-                        }
-                        return <Dropdown.Item key={child.props.href} onClick={hideDropdown} as={Link} href={child.props.href} className={itemClassList.join(' ')} eventKey={i}>
+                    {React.Children.toArray(props.children).map((child, i, array) =>
+                        <Dropdown.Item key={i} onClick={hideDropdown} as={Link} href={child.props['data-link']} className={classes['dropdown-item']} eventKey={i}>
                             <span onClick={hideDropdown}>{child}</span></Dropdown.Item>
-                    })}
+                    )}
                 </Dropdown.Menu>
             </Fade>
         </Dropdown>

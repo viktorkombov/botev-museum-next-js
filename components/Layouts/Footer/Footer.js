@@ -24,16 +24,16 @@ const Footer = props => {
                     <div className={classes['social-networks']}>
                         <h5>Свържете се с нас</h5>
                         <ul className={classes['social-networks-links']}>
-                            <li className={classes['icon-list-item']}><IconRounded link="telephone" icon={<Phone />} large /></li>
-                            <li className={classes['icon-list-item']}><IconRounded link="facebook" icon={<FacebookRounded />} large /></li>
-                            <li className={classes['icon-list-item']}><IconRounded link="youtube" icon={<YouTube />} large /></li>
-                            <li className={classes['icon-list-item']}><IconRounded link="instagram" icon={<Instagram />} large /></li>
+                            {/* <li className={classes['icon-list-item']}><IconRounded link="telephone" icon={<Phone />} large /></li> */}
+                            <li className={classes['icon-list-item']}><IconRounded link="https://www.facebook.com/muzeibotev" icon={<FacebookRounded />} large /></li>
+                            {/* <li className={classes['icon-list-item']}><IconRounded link="youtube" icon={<YouTube />} large /></li>
+                            <li className={classes['icon-list-item']}><IconRounded link="instagram" icon={<Instagram />} large /></li> */}
                         </ul>
                     </div>
                     <div>
                         <ul className={classes.contacts}>
-                            <li><Room /><span>Адрес: гр. Калофер, пл. &quot;Христо Ботев&quot; 1</span></li>
-                            <li><Phone /><span>Телефон: 03353 23 21</span></li>
+                            <li><Room /><span>Адрес: гр. Калофер, ул. &quot;Христо Ботев&quot; 5</span></li>
+                            <li><Phone /><span>Телефон: 03133 52 71</span></li>
                             <li><Email /><span>E-mail: musei_botev@abv.bg</span></li>
                         </ul>
                     </div>
@@ -76,10 +76,10 @@ const Footer = props => {
                     <div className={classes['social-networks']}>
                         <h5>Contacts</h5>
                         <ul className={classes['social-networks-links']}>
-                            <li className={classes['icon-list-item']}><IconRounded link="telephone" icon={<Phone />} large /></li>
-                            <li className={classes['icon-list-item']}><IconRounded link="facebook" icon={<FacebookRounded />} large /></li>
-                            <li className={classes['icon-list-item']}><IconRounded link="youtube" icon={<YouTube />} large /></li>
-                            <li className={classes['icon-list-item']}><IconRounded link="instagram" icon={<Instagram />} large /></li>
+                            {/* <li className={classes['icon-list-item']}><IconRounded link="telephone" icon={<Phone />} large /></li> */}
+                            <li className={classes['icon-list-item']}><IconRounded link="https://www.facebook.com/muzeibotev" icon={<FacebookRounded />} large /></li>
+                            {/* <li className={classes['icon-list-item']}><IconRounded link="youtube" icon={<YouTube />} large /></li>
+                            <li className={classes['icon-list-item']}><IconRounded link="instagram" icon={<Instagram />} large /></li> */}
                         </ul>
                     </div>
                     <div>

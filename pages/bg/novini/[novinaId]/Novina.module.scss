@@ -25,7 +25,7 @@
 
 .image-wrapper {
     @include image-wrapper;
-    max-height: 450px;
+    max-height: 500px;
     background-color: lighten(map-get($colors, main), 60%);
     img {
         transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);

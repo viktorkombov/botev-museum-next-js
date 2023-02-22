@@ -2,8 +2,6 @@
 import { convertFromRaw } from 'draft-js';
 import { useEffect, useState } from 'react';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
-import PageTransition from '@/components/UI/PageTransition';
-import { useHttpClient } from '@/hooks/http-hook';
 import { Fragment } from 'react';
 import Chip from '@/components/UI/Chip';
 import { convertToLocalDate } from '@/utils/functions';
@@ -15,23 +13,22 @@ import PostBody from '@/components/Layouts/Post/PostBody';
 import ModalBootstrap from '@/components/UI/ModalBootstrap';
 import PostAside from '@/components/Layouts/Post/PostAside';
 import LoadingSpinner from '@/components/UI/LoadingSpinner';
-import { baseUrl } from '@/utils/data';
-import Image from 'next/image';
+import { baseUrl, museumCardsContent } from '@/utils/data';
+import SEO from '@/components/SEO/SEO';
+import PostAsideWrapper from '@/components/Layouts/Post/PostAsideWrapper';
 
 function Novina(props) {
-    // const [postData, setPostData] = useState({});
-
     const { postData, novinaId } = props;
     const [showModal, setShowModal] = useState(false);
     const [imageIndex, setImageIndex] = useState(0);
-    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const [loading, setLoading] = useState(true);
     const router = useRouter();
-    console.log(postData)
     const images = [];
 
     useEffect(() => {
-        console.log(router)
-
+        setTimeout(() => {
+            setLoading(false);
+        }, 300)
     }, []);
 
     const onImageClick = (index) => {
@@ -41,28 +38,31 @@ function Novina(props) {
 
 
     useEffect(() => {
-        document.querySelectorAll('.' + classes.anchor).forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
+        setTimeout(() => {
+            document.querySelectorAll('.' + classes.anchor).forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
 
-                if (anchor.href.includes(baseUrl)) {
-                    if (anchor.href.includes('uploads/')) {
-                        anchor.href.replace('/bg/novini', '');
-                        return;
+                    if (anchor.href.includes(baseUrl)) {
+                        if (anchor.href.includes('uploads/')) {
+                            anchor.href.replace('/bg/novini', '');
+                            return;
+                        }
+
+                        e.preventDefault();
+                        router.replace(anchor.href?.replace(baseUrl, ''))
                     }
 
-                    e.preventDefault();
-                    router.replace(anchor.href?.replace(baseUrl, ''))
-                }
 
+                });
+            });
+            document.querySelectorAll('.' + classes['image-wrapper']).forEach((image, i) => {
+                image.addEventListener('click', () => {
+                    onImageClick(i);
+                });
+            });
+        }, 500);
 
-            });
-        });
-        document.querySelectorAll('.' + classes['image-wrapper']).forEach((image, i) => {
-            image.addEventListener('click', () => {
-                onImageClick(i);
-            });
-        });
-    }, [postData, router]);
+    }, []);
 
     const postContent = JSON.parse(postData?.Content);
 
@@ -97,10 +97,16 @@ function Novina(props) {
     console.log(images);
     return (
         <Fragment>
+            <SEO
+                title={postData?.Title}
+                description={postData?.Subtitle}
+                image={postData?.CoverImage}
+                keywords={postData?.Keywords}
+            />
             {postData ? (<Fragment>
                 <CarouselBootstrap items={[{ src: baseUrl + postData.CoverImage, title: postData.Title }]}></CarouselBootstrap>
                 <Post>
-                    {!isLoading ? (
+                    {!loading ? (
                         <PostBody history={{ nachalo: 'Начало', novini: 'Новини', currentPage: postData.Title }}>
                             <Fragment>
                                 <section className={classes.heading}>
@@ -121,7 +127,8 @@ function Novina(props) {
                             </Fragment>
                         </PostBody>
                     ) : <LoadingSpinner />}
-                    <PostAside id={novinaId} />
+                    <PostAsideWrapper cardsData={museumCardsContent} />
+
                 </Post>
             </Fragment>) : <h2>Страницата не е открита</h2>}
         </Fragment>
@@ -136,11 +143,9 @@ export async function getServerSideProps(context) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
         const responseData = await mainArticle.json();
-        console.log(responseData)
         return {
             props: {
                 postData: responseData,

@@ -10,6 +10,7 @@
 
     .cards-wrapper {
         @include cards-wrapper;
+        width: 90%;
     }
 
     .card {
@@ -20,6 +21,12 @@
 
     @media screen and (max-width: 1000px) {
         padding-bottom: 1rem;
+    }
+
+    @media screen and (max-width: 800px) {
+        .card {
+            width: 90%;
+        }
     }
 
     @media screen and (max-height: 620px) {

@@ -43,6 +43,7 @@
     }
 }
 
-.dropdown-item--last {
+.dropdown-item:last-child {
     border-bottom: none;
 }
+

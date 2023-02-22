@@ -1,27 +1,27 @@
 const Providers = require("next-auth/providers").default;
 const { verifyPassword, findUserById } = require("./utils/auth");
 
-const nextAuthOptions = { 
+const nextAuthOptions = {
     session: {
         jwt: true
     },
     providers: [
         Providers.Credentials({
-            async authorize (credentials) {
+            async authorize(credentials) {
                 const responseData = await findUserById(credentials.username);
                 const user = responseData[0][0];
 
                 if (!user) {
-                    throw new Error('No user found!');
+                    return null;
                 }
 
                 const isValid = await verifyPassword(credentials.password, user.password);
 
                 if (!isValid) {
-                    throw new Error('Could not log you in!');
+                    return null;
                 }
 
-                return {username: user.username};
+                return { username: user.username };
             }
         })
     ]

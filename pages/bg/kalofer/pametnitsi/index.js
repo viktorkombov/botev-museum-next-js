@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import FloatingImage from '@/components/Layouts/FloatingImagesPage/FloatingImage';
 import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/FloatingImagesPage';
 import Post from '@/components/Layouts/Post';
@@ -10,95 +10,120 @@ import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import { kaloferCardsContent, uploadsUrl } from '@/utils/data';
 import classes from './Memorials.module.scss';
 
+import pametnitsi_0_img from '@/assets/uploads/pametnik-kalifer-voivoda.jpg';
+import pametnitsi_1_img from '@/assets/uploads/grob-kalifer-voivoda.jpg';
+import pametnitsi_2_img from '@/assets/uploads/biyust-hristo-botev.jpg';
+import pametnitsi_3_img from '@/assets/uploads/pametnik-ivanka-boteva.jpg';
+import pametnitsi_4_img from '@/assets/uploads/pametnik-botyo-petkov.jpg';
+import pametnitsi_5_img from '@/assets/uploads/kamak-ognena-rech-.jpg';
+import pametnitsi_6_img from '@/assets/uploads/voynishki-pametnik.jpg';
+import pametnitsi_7_img from '@/assets/uploads/hram-uspenie-bogorodichno.jpg';
+import pametnitsi_8_img from '@/assets/uploads/hram-arhangel-mihail.jpg';
+import pametnitsi_9_img from '@/assets/uploads/devicheski-manastir-vavedenie-bogorodichno.jpg';
+import pametnitsi_10_img from '@/assets/uploads/manastir-rozhdestsvo-bogorodichno.jpg';
+import SEO from '@/components/SEO/SEO';
+import ModalBootstrap from '@/components/UI/ModalBootstrap';
+import Gallery from '@/components/UI/Gallery';
+
 function Memorials() {
-    const pageTitle = 'Паметници и паметни места';
+    const [showModal, setShowModal] = useState(false);
+    const [imageIndex, setImageIndex] = useState(false);
+
+    const pageTitle = 'Паметници на културата';
+
+    const onImageClick = (index) => {
+        setImageIndex(index);
+        setShowModal(true);
+    };
     const images = [
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: `жовник и обществен деец, който учи в Одеса, съставя и превежда учебници, а майка му е от скромно калоферско семейство.[4] Освен Христо Ботев, двамата имат още осем деца: Ана (1850 – 1867), Петко (1852 – 1872), Стефан (1854 – 1890), Кирил (1856 – 1944), Тота (1859 – 1864), Генко (1861 – 1863), Генко (1863 – 1866) и Боян (1866 – 1885).[5]
-        Националният музей „Христо Ботев“ в Калофер Според някои източници Христо Ботев е роден в стая на калоферското училище, в която живеят родителите му. Малко по-късно в Калофер е построено ново училище и семейството наема къща на Генко Филов, в която Ботев прекарва първите няколко години от живота си. Тази къща е унищожена по време на Руско-турската война, но през 1940-те години е възстановена и превърната в Национален музей „Христо Ботев“.[6]
-        През 1854 година Ботьо Петков не успява да се споразумее с калоферската община за заплащането си и се премества в Карлово. Там семейството живее в къщата на майка му в Табашката махала, а Христо Ботев тръгва на училище, като негов учител е баща му. През 1858 година Ботьо Петков обвинява управата на карловската община, че се опитва да си присвои пари, завещани за училището, след което се връща в Калофер. Общината се опитва неуспешно да го настани в къща на живеещия в Цариград търговец Христо Тъпчилещов, след което семейството се настанява в къща на хаджи Нестор. След връщането им в Калофер Христо Ботев постъпва в местното трикласно училище, където учител е баща му.[7]
-        В Одеса и връщане в Калофер Датите са по Юлианския календар (стар стил), о`,
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280963.JPG",
-            title: "Никола Обретанов",
-        },
-        {
-            src: "https://muzeibotev.com/css/skins/custom/152/images/PC280921.JPG",
-            title: "Никола Войновски",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: "Никола Обретанов",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
-        },
+        { src: pametnitsi_0_img.src, title: "Паметникът на Калифер войвода, скулптор Христо Песев, 1975 г." },
+        { src: pametnitsi_1_img.src, title: "Гробът на Калифер войвода – легендарният основател на града" },
+        { src: pametnitsi_2_img.src, title: "Бюст-паметник на Христо Ботев, скулптор Кирил Георгиев, 1930 г." },
+        { src: pametnitsi_3_img.src, title: "Паметник на майката на Ботев, скулптор проф. Иван Мандов, 1980 г." },
+        { src: pametnitsi_4_img.src, title: "Паметникът на Ботьо Петков, скулптор Марко Марков, 1980 г." },
+        { src: pametnitsi_5_img.src, title: "Камъкът, от който Христо Ботев произнася огнената си реч на 11 май 1867 г., намира се пред Даскал Ботевото училище" },
+        { src: pametnitsi_6_img.src, title: "Войнишки паметник-чешма на загиналите във войните калоферци" },
+        { src: pametnitsi_7_img.src, title: "Храм „Успение на Св. Богородица”" },
+        { src: pametnitsi_8_img.src, title: "Храм „Св. Архангел Михаил”" },
+        { src: pametnitsi_9_img.src, title: "Девически манастир „Св. Въведение Богородично”" },
+        { src: pametnitsi_10_img.src, title: "Mъжки манастир „Св. Рождество Богородично”" }
     ];
+
     return (
         <Fragment>
-            <CarouselBootstrap type="withCard" items={[{ src: `${uploadsUrl}/pametnik-ivanka-boteva.jpg`, title: pageTitle }]}></CarouselBootstrap>
+            <SEO
+                title={pageTitle}
+                description="Бюст-паметник на Христо Ботев, скулптор Кирил Георгиев, 1930 г."
+                image={images[10].src}
+                keywords="паметник на христо ботев, паметник калофер, паметници в калофер"
+            />
+            <CarouselBootstrap items={[{src: images[10].src, title: pageTitle}]}></CarouselBootstrap>
             <Post>
-            <PostBody history={{ nachalo: 'Начало', null: 'Калофер', pageTitle: pageTitle }}>
+                <PostBody history={{ nachalo: 'Начало', null: 'Калофер', pageTitle: pageTitle }}>
                     <FloatingImagesPage>
                         <Fragment>
                             <h2>{pageTitle}</h2>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/sn_3.JPG" />
+                                <FloatingImage src={images[0].src} onClick={() => onImageClick(0)} />
                                 <p><strong>Паметникът на Калифер войвода, скулптор Христо Песев, 1975 г.</strong></p> <p><strong></strong></p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/IMGP0213.JPG" />
+                                <FloatingImage src={images[1].src} onClick={() => onImageClick(1)} />
                                 <p><strong>Гробът на Калифер войвода – легендарният основател на града</strong></p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/IMGP0083.JPG" />
+                                <FloatingImage src={images[2].src} onClick={() => onImageClick(2)} />
                                 <p><strong>Бюст-паметник на Христо Ботев, скулптор Кирил Георгиев, 1930 г.</strong></p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/IM001261.JPG" />
+                                <FloatingImage src={images[3].src} onClick={() => onImageClick(3)} />
                                 <p><strong>Паметник на майката на Ботев, скулптор проф. Иван Мандов, 1980 г.</strong></p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/IMGP0119.JPG" />
+                                <FloatingImage src={images[4].src} onClick={() => onImageClick(4)} />
                                 <p><strong>Паметникът на Ботьо Петков, скулптор Марко Марков, 1980 г.</strong></p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/sn_10%20kamuk%20pred%20uchilishteto.jpg" />
+                                <FloatingImage src={images[5].src} onClick={() => onImageClick(5)} />
                                 <p><strong>Камъкът, от който Христо Ботев произнася огнената си реч на 11 май 1867 г., намира се пред Даскал Ботевото училище</strong></p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/IMGP0088.JPG" />
+                            <FloatingImage src={images[6].src} onClick={() => onImageClick(6)} />
                                 <p><strong>Войнишки паметник-чешма на загиналите във войните калоферци</strong></p>
                             </div>
-                            <div style={{padding: '2rem 0 1rem 0'}}>
+                            <div style={{ padding: '2rem 0 1rem 0' }}>
                                 <h3>Манасири и църкви</h3>
                                 <p>В град Калофер още през епохата на Българското възраждане са изградени шест църкви, два манастира и три метоха.</p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/IM001271.JPG" />
+                            <FloatingImage src={images[7].src} onClick={() => onImageClick(7)} />
                                 <p><strong>Храм „Успение на Св. Богородица”</strong></p>
                                 <p>Построен е през 1848 г. и се намира се в центъра на града. Северозападно от него, под сводеста постройка с колони, е лечебното аязмо. До него е поставена мраморна плоча, отбелязваща мястото на стария Светогорски метох и училище. В една от стаите на това училище се ражда Христо Ботев.</p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/P5083846.JPG" />
+                            <FloatingImage src={images[8].src} onClick={() => onImageClick(8)} />
                                 <p><strong>Храм „Св. Архангел Михаил”</strong></p>
                                 <p>Сградата е голяма по обем, доминира над града и се вижда от пътя, влизащ в него. Графично изображение на храма илюстрира разказа за Калофер на Феликс Каниц в “Histoire de la guerre d’Orient 1877-1878 и Каниц, “Donau - Bulgarien und der Balkan”. В олтарното пространство са запазени стенописи, работени от Георги Данчов-Зографина през 1870-1871г. В сегашния си вид църквата е изградена от Уста Генчо от Трявна.</p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/P4243552.JPG" />
+                            <FloatingImage src={images[9].src} onClick={() => onImageClick(9)} />
                                 <p>В Девическия манастир „Св. Въведение Богородично”, създаден в началото на ХVІІІ се намира църква със същото име. В сегашния си вид е от 1862 г. След Освобождението е възстановен с руски средства и църквата е украсена с руски икони най-ценните, от които са копия на: Казанска , Тихвенска  и Смоленска Св. Богородица. В храма се намира аязмо, вкопано на 2,50 м. под подовото ниво. Според преданието водата му е лечебна.</p>
                             </div>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/PA288405.JPG" />
+                            <FloatingImage src={images[10].src} onClick={() => onImageClick(10)} />
                                 <p>Извън града, в чудно красива местност, е разположен и прочутият в миналото мъжки манастир „Св. Рождество Богородично”. Той е основан в 1606 г. и става известен с храмовата си икона, която според легендата имала чудотворна сила.</p>
                             </div>
+                            <h4>Галерия:</h4>
+                        </Fragment>
+                        <Fragment>
+                            <ModalBootstrap show={showModal} close={() => setShowModal(false)}>
+                                <CarouselBootstrap
+                                    items={images}
+                                    index={imageIndex}
+                                    type="gallery"
+                                ></CarouselBootstrap>
+                            </ModalBootstrap>
+                            <Gallery images={images} onImageClick={onImageClick} />
                         </Fragment>
                     </FloatingImagesPage>
                 </PostBody>

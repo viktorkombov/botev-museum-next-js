@@ -3,6 +3,7 @@ import classes from './SideImageCard.module.scss';
 import image from '../../../images/museum.jpg'
 import Link from 'next/link';
 import Image from 'next/image';
+import Button from '../Button';
 
 const SideImageCard = props => {
     const { link } = props;
@@ -25,12 +26,12 @@ const SideImageCard = props => {
                         {/* <button onClick={props.onButtonClicked}>
                         {props.button}
                     </button> */}
-                        <button><span className={classes['button-content']}>Виж повече</span><span style={{ marginLeft: '1rem' }}><i class="fa fa-info-circle" aria-hidden="true"></i></span></button>
+                        <Button className={classes['button-content']}>Виж още...</Button>
                     </section>
                 </section>
                 <section className={classes['image-wrapper']}>
                     <div className={classes['image']}>
-                        <Image src={props.image} alt="" fill />
+                        <Image src={props.image} alt={props.title} fill />
                     </div>
                 </section>
             </div>

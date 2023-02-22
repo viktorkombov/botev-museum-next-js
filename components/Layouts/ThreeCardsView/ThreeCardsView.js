@@ -16,7 +16,7 @@ const ThreeCardsView = props => {
                         media
                         img={baseUrl + card.CoverImage}
                         title={card.Title}
-                        content={card.Subtitle ? card.Subtitle : 'Калофер - градът на Ботев'}
+                        content={card.Subtitle ? card.Subtitle : ' '}
                         count={card.Count}
                         date={card.Date}
                         button="Виж повече..."

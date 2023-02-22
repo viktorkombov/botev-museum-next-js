@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import FloatingImage from '@/components/Layouts/FloatingImagesPage/FloatingImage';
 import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/FloatingImagesPage';
 import Post from '@/components/Layouts/Post';
@@ -12,54 +12,102 @@ import PageTransition from '@/components/UI/PageTransition';
 import { hristoBotevCardsContent, uploadsUrl } from '@/utils/data';
 import classes from './Letopis.module.scss';
 
+import letopis_0_img from '@/assets/uploads/muzey-2.jpg';
+import letopis_1_img from '@/assets/uploads/odesa-1.jpg';
+import letopis_2_img from '@/assets/uploads/odesa-2.jpg';
+import letopis_3_img from '@/assets/uploads/vestnik-duma.jpg';
+import letopis_4_img from '@/assets/uploads/vestnik-zname.jpg';
+import letopis_5_img from '@/assets/uploads/vestnik-nova-bulgaria.jpg';
+import letopis_6_img from '@/assets/uploads/slizaneto-na-chetata.jpg';
+
+
+import SEO from '@/components/SEO/SEO';
+import ModalBootstrap from '@/components/UI/ModalBootstrap';
+
 function Letopis() {
+    const [showModal, setShowModal] = useState(false);
+    const [imageIndex, setImageIndex] = useState(false);
+
     const pageTitle = 'Летопис';
+
+    const onImageClick = (index) => {
+        setImageIndex(index);
+        setShowModal(true);
+    };
     const images = [
         {
-            src: "https://muzeibotev.com/clients/152/files/images/sn_5%20semeistvo.jpg",
-            title: `жовник и обществен деец, който учи в Одеса, съставя и превежда учебници, а майка му е от скромно калоферско семейство.[4] Освен Христо Ботев, двамата имат още осем деца: Ана (1850 – 1867), Петко (1852 – 1872), Стефан (1854 – 1890), Кирил (1856 – 1944), Тота (1859 – 1864), Генко (1861 – 1863), Генко (1863 – 1866) и Боян (1866 – 1885).[5]
-        Националният музей „Христо Ботев“ в Калофер Според някои източници Христо Ботев е роден в стая на калоферското училище, в която живеят родителите му. Малко по-късно в Калофер е построено ново училище и семейството наема къща на Генко Филов, в която Ботев прекарва първите няколко години от живота си. Тази къща е унищожена по време на Руско-турската война, но през 1940-те години е възстановена и превърната в Национален музей „Христо Ботев“.[6]
-        През 1854 година Ботьо Петков не успява да се споразумее с калоферската община за заплащането си и се премества в Карлово. Там семейството живее в къщата на майка му в Табашката махала, а Христо Ботев тръгва на училище, като негов учител е баща му. През 1858 година Ботьо Петков обвинява управата на карловската община, че се опитва да си присвои пари, завещани за училището, след което се връща в Калофер. Общината се опитва неуспешно да го настани в къща на живеещия в Цариград търговец Христо Тъпчилещов, след което семейството се настанява в къща на хаджи Нестор. След връщането им в Калофер Христо Ботев постъпва в местното трикласно училище, където учител е баща му.[7]
-        В Одеса и връщане в Калофер Датите са по Юлианския календар (стар стил), о`,
+            src: letopis_0_img.src,
+            title: 'Къщата на Христо Ботев'
         },
         {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
+            src: letopis_1_img.src,
+            title: 'Ботев заминава за Одеса',
         },
         {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280963.JPG",
-            title: "Никола Обретанов",
+            src: letopis_2_img.src,
+            title: 'ІІ Одеска мъжка гимназия'
         },
         {
-            src: "https://muzeibotev.com/css/skins/custom/152/images/PC280921.JPG",
-            title: "Никола Войновски",
+            src: letopis_3_img.src,
+            title: 'в. “Дума на българските емигранти”',
         },
         {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: "Никола Обретанов",
+            src: letopis_4_img.src,
+            title: 'в. “Знаме”',
         },
         {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
+            src: letopis_5_img.src,
+            title: 'в. “Нова България”'
+        },
+        {
+            src: letopis_6_img.src,
+            title: 'Ботевата четата слиза край Козлодуй'
         },
     ];
+
     return (
-        <PageTransition>
-            <CarouselBootstrap items={[{ src: `${uploadsUrl}/kalofer-ot-visoko2.jpg`, title: pageTitle }]} />
+        <Fragment>
+            <SEO
+                title={pageTitle}
+                description="В музея се съхраняват, опазват и експонират лични вещи, документи, издания, произведения на българското изобразително изкуство и др. материали, свързани с живота и делото на Христо Ботев, неговото семейство и съратниците му. "
+                image={images[6].src}
+                keywords="Музеят на Христо Ботев, Родната къща на Христо Ботев, Музей Ботев"
+            />
+            <CarouselBootstrap items={[{ src: letopis_0_img.src, title: pageTitle }]}></CarouselBootstrap>
             <Post>
                 <PostBody history={{ nachalo: 'Начало', null: 'Христо Ботев', pageTitle: pageTitle }}>
                     <FloatingImagesPage withoutStyledFirstLetter>
                         <Fragment >
                             <h2>{pageTitle}</h2>
-                            <CustomizedTimeLine />
+                            <p> Христо Ботев е роден на 25 декември 1847 г. (н. с. 6 януари 1848 г.) в една
+                                от стаите на старото килийно училище, намиращо се до църквата „Св.
+                                Богородица”. Той е първородият син в семейството на Ботьо Петков и
+                                Ивана Дрянкова.</p>
+                            <p><i>„В Тракия, в село Калофер, Пловдивски окръг, се е родил Христо Ботйов
+                                Петков, от родители чисто българи и православни. Това се случило на
+                                знаменит ден, навръх Рождество Христово, 25 декември 1847 г...По тая
+                                причина, че се е родил на Рождество, според българския обичай турили му
+                                името Христо, именник на спасителя.”</i></p>
+                                <p style={{textAlign: 'right', paddingBottom: '2rem'}}><strong><i>Захари Стоянов, „Христо Ботйов. Опит за биография”</i></strong></p>
+                            <CustomizedTimeLine onImageClick={onImageClick} images={images} />
+                            <br />
                             <h4>Галерия:</h4>
+                            <Fragment>
+                                <ModalBootstrap show={showModal} close={() => setShowModal(false)}>
+                                    <CarouselBootstrap
+                                        items={images}
+                                        index={imageIndex}
+                                        type="gallery"
+                                    ></CarouselBootstrap>
+                                </ModalBootstrap>
+                                <Gallery images={images} onImageClick={onImageClick} />
+                            </Fragment>
                         </Fragment>
-                        <Gallery images={images} />
                     </FloatingImagesPage>
                 </PostBody>
                 <PostAsideWrapper cardsData={hristoBotevCardsContent} currentPageTitle={pageTitle} />
             </Post>
-        </PageTransition>
+        </Fragment>
 
     );
 }

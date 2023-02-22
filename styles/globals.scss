@@ -95,6 +95,7 @@ img {
 
 .button {
   font-family: Comfortaa, Verdana, Geneva, sans-serif !important;
+  text-transform: none !important;
 }
 
 .MuiLink-root {
@@ -359,4 +360,8 @@ h4 {
   div {
     padding-bottom: 0.3rem;
   }
+}
+
+.font {
+  font-family: Comfortaa, Verdana, Geneva, sans-serif !important;
 }

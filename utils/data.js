@@ -13,11 +13,11 @@ export const navigationItems = {
     },
     aboutUs: {
         name: 'За нас',
-        items: [{ name: 'Работно време', link: '/bg/za-nas/rabotno-vreme' }, { name: 'Профил на купувача', link: '/bg/za-nas/profil-na-kupuvacha' }, { name: 'Дейности и услуги', link: '/bg/za-nas/za-posetiteli' }, { name: 'Издания', link: '/bg/za-nas/izdania' }, { name: 'Партньори', link: '/bg/za-nas/partnyori' }, { name: 'Контакти', link: '/bg/za-nas/kontakti' }]
+        items: [{ name: 'Работно време', link: '/bg/za-nas/rabotno-vreme' }, { name: 'Профил на купувача', link: '/bg/za-nas/profil-na-kupuvacha' }, { name: 'Дейности и услуги', link: '/bg/za-nas/za-posetiteli' }, { name: 'Издания', link: '/bg/za-nas/izdania' }, { name: 'Партньори', link: '/bg/za-nas/partnyori' }, { name: 'Документи', link: '/bg/za-nas/dokumenti' }, { name: 'Контакти', link: '/bg/za-nas/kontakti' }]
     }
 }
 
-export const baseUrl = 'http://localhost:3000/';
+export const baseUrl = 'https://muzeibotev.com/';
 
 export const apiUrl = baseUrl + '/api';
 
@@ -87,7 +87,7 @@ export const aboutUsCardsContent = [
         id: 3,
         title: 'Дейности и услуги',
         content: 'Входни такси за музея и други услуги',
-        link: '/bg/za-nas/uslugi'
+        link: '/bg/za-nas/za-posetiteli'
     },
     {
         id: 4,

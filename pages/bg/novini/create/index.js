@@ -19,7 +19,7 @@ function NewPost() {
                 setIsLoading(false);
               }, 300);
         } else {
-            router.replace('/bg/login')
+            router.replace('/bg/login');
         }
     }, []);
 

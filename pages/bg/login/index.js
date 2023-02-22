@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { forwardRef, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import FormButton from "@/components/FormElements/FormButton";
 import Input, { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "@/components/FormElements/Input";
@@ -9,16 +9,19 @@ import { useHttpClient } from "@/hooks/http-hook";
 import classes from './Auth.module.scss';
 import SectionHeader from "@/components/UI/SectionHeader";
 import { signIn, useSession } from 'next-auth/client'
-import { Paper } from "@mui/material";
+import MuiAlert from '@mui/material/Alert';
+import { Paper, Snackbar } from "@mui/material";
 
 function Auth() {
     const auth = useContext(AuthContext);
     const router = useRouter();
     const [isIntialLoading, setIsInitialLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [openSnackbar, setOpenSnackbar] = useState(false);
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const [session, loading] = useSession();
 
-  
+
     useEffect(() => {
         if (!session) {
             setTimeout(() => {
@@ -52,8 +55,27 @@ function Auth() {
 
         if (!result.error) {
             router.replace('/bg/dashboard');
+        } else {
+            handleSnackbarOpen('Въведено е грешно име или парола!')
         }
     };
+
+    const handleSnackbarOpen = (message) => {
+        setErrorMessage(message);
+        setOpenSnackbar(true);
+    };
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnackbar(false);
+    };
+
+    const Alert = forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
 
     return (
         <React.Fragment>
@@ -62,7 +84,7 @@ function Auth() {
             </SectionHeader>
             {(isLoading || isIntialLoading) && <LoadingSpinner asOverlay />}
             <div className={classes.wrapper}>
-                <Paper elevation={4} sx={{p: "1.5rem"}}>
+                <Paper elevation={4} sx={{ p: "1.5rem" }}>
                     <h2>Въведете данните си</h2>
                     <hr />
                     <form onSubmit={authSubmitHandler}>
@@ -88,6 +110,14 @@ function Auth() {
                         </FormButton>
                     </form>
                 </Paper>
+                <Snackbar
+                    open={openSnackbar}
+                    autoHideDuration={6000}
+                    onClose={handleCloseSnackbar}>
+                    <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+                        {errorMessage}
+                    </Alert>
+                </Snackbar>
             </div>
         </React.Fragment>
     );

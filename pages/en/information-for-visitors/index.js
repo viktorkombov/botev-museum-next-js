@@ -4,12 +4,26 @@ import Delimiter from '@/components/UI/Delimiter';
 import SectionHeader from '@/components/UI/SectionHeader/SectionHeader';
 import TwoColumnsTable from '@/components/UI/TwoColumnsTable';
 import classes from './InformationForVisitorsEN.module.scss';
+import info_0_img from '@/assets/uploads/muzey-10.jpg';
+import SEO from '@/components/SEO/SEO';
 
 function InformationForVisitorsEN({ ticketsTableData }) {
+    const pageTitle = 'Information for visitors';
+
+    const images = [
+        { src: info_0_img.src, title: pageTitle }
+    ];
 
     return (
         <Fragment>
-            <CarouselBootstrap en items={[{ src: "https://muzeibotev.com/clients/152/files/images/PC280963.JPG", title: "Information for visitors" }]}></CarouselBootstrap>
+            <SEO
+                title={pageTitle}
+                description="Working hours and tickets and prices."
+                image={images[0].src}
+                keywords="hristo botev, hristo botev museum tickets, hristo botev museum working hours"
+            />
+            <CarouselBootstrap items={[images[0]]} en></CarouselBootstrap>
+
             <SectionHeader id="content"><h2>Working hours and tickets and prices</h2></SectionHeader>
             <section className={classes.content}>
                 <h3>Working hours</h3>
@@ -20,7 +34,7 @@ function InformationForVisitorsEN({ ticketsTableData }) {
                 </div>
                 <div style={{ padding: '2rem 0', position: 'relative' }}>
                     <p><strong>November - March</strong></p>
-                    <p>8.30 ч. – 17.00 ч.</p>
+                    <p>8.30 – 17.00</p>
                     <Delimiter fullWidth />
                 </div>
                 <div style={{ padding: '2rem 0' }}>

@@ -27,6 +27,7 @@ export default async (req, res) => {
         form.parse(req, async (err, fields, file) => {
             if (file) {
                 file = file.file;
+                console.log(file);
                 const MIME_TYPE_MAP = {
                     'image/png': 'png',
                     'image/jpeg': 'jpeg',

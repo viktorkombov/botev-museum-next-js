@@ -15,7 +15,7 @@ const NavBarDropDown = ({ dropDownItems }) => {
                     <ExpandMore style={{ verticalAlign: 'top'}}  />
                 </span>
             </span>
-            {items.map((item, i) => <Link href={item.link} key={i} >{item.name}</Link>)}
+            {items.map((item, i) => <span data-link={item.link} key={item.name} >{item.name}</span>)}
         </DropDown>
     );
 }

@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import FloatingImage from '@/components/Layouts/FloatingImagesPage/FloatingImage';
 import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/FloatingImagesPage';
 import Post from '@/components/Layouts/Post';
@@ -12,40 +12,40 @@ import PageTransition from '@/components/UI/PageTransition';
 import { hristoBotevCardsContent, uploadsUrl } from '@/utils/data';
 import classes from './Photographs.module.scss';
 
+import snimka_0_img from '@/assets/uploads/fotografia-1.png';
+import snimka_1_img from '@/assets/uploads/fotografia-2.jpg';
+import snimka_2_img from '@/assets/uploads/fotografia-3.png';
+import snimka_3_img from '@/assets/uploads/fotografia-4.jpg';
+
+import SEO from '@/components/SEO/SEO';
+import ModalBootstrap from '@/components/UI/ModalBootstrap';
+
 function Photographs() {
-    const pageTitle = 'Снимките на Ботев';
+    const [showModal, setShowModal] = useState(false);
+    const [imageIndex, setImageIndex] = useState(false);
+
+    const pageTitle = 'Снимки на Ботев';
+
+    const onImageClick = (index) => {
+        setImageIndex(index);
+        setShowModal(true);
+    };
     const images = [
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: `жовник и обществен деец, който учи в Одеса, съставя и превежда учебници, а майка му е от скромно калоферско семейство.[4] Освен Христо Ботев, двамата имат още осем деца: Ана (1850 – 1867), Петко (1852 – 1872), Стефан (1854 – 1890), Кирил (1856 – 1944), Тота (1859 – 1864), Генко (1861 – 1863), Генко (1863 – 1866) и Боян (1866 – 1885).[5]
-        Националният музей „Христо Ботев“ в Калофер Според някои източници Христо Ботев е роден в стая на калоферското училище, в която живеят родителите му. Малко по-късно в Калофер е построено ново училище и семейството наема къща на Генко Филов, в която Ботев прекарва първите няколко години от живота си. Тази къща е унищожена по време на Руско-турската война, но през 1940-те години е възстановена и превърната в Национален музей „Христо Ботев“.[6]
-        През 1854 година Ботьо Петков не успява да се споразумее с калоферската община за заплащането си и се премества в Карлово. Там семейството живее в къщата на майка му в Табашката махала, а Христо Ботев тръгва на училище, като негов учител е баща му. През 1858 година Ботьо Петков обвинява управата на карловската община, че се опитва да си присвои пари, завещани за училището, след което се връща в Калофер. Общината се опитва неуспешно да го настани в къща на живеещия в Цариград търговец Христо Тъпчилещов, след което семейството се настанява в къща на хаджи Нестор. След връщането им в Калофер Христо Ботев постъпва в местното трикласно училище, където учител е баща му.[7]
-        В Одеса и връщане в Калофер Датите са по Юлианския календар (стар стил), о`,
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280963.JPG",
-            title: "Никола Обретанов",
-        },
-        {
-            src: "https://muzeibotev.com/css/skins/custom/152/images/PC280921.JPG",
-            title: "Никола Войновски",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: "Никола Обретанов",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
-        },
+        { src: snimka_0_img.src, title: "Христо Ботев, май 1875 г., Букурещ." },
+        { src: snimka_1_img.src, title: "Христо Ботев с българи ученици в Одеса, краят на април 1865 г." },
+        { src: snimka_2_img.src, title: "Христо Ботев, Никола Славков и Иван Драсов, септември 1875 г., Букурещ" },
+        { src: snimka_3_img.src, title: "Христо Ботев и братята му Стефан, Кирил и Боян, април или май 1876 г." }
     ];
+
     return (
-        <PageTransition>
-            <CarouselBootstrap type="withCard" items={[{ src: `${uploadsUrl}/fotografia-4.jpg`, title: pageTitle }]}></CarouselBootstrap>
+        <Fragment>
+            <SEO
+                title={pageTitle}
+                description="Най-известната фотография на Ботев е правена в ателието на фотографа Тома Хитров. От нея са запазени най-много копия."
+                image={images[3].src}
+                keywords="снимки на ботев, снимки на христо ботев, снимка на ботев"
+            />
+            <CarouselBootstrap items={[{ src: images[3].src, title: pageTitle }]}></CarouselBootstrap>
             <Post>
                 <PostBody history={{ nachalo: 'Начало', null: 'Христо Ботев', pageTitle: pageTitle }}>
                     <FloatingImagesPage withoutStyledFirstLetter>
@@ -53,38 +53,44 @@ function Photographs() {
                             <h2>{pageTitle}</h2>
                             <div style={{ overflow: 'auto', paddingBottom: '1rem', position: 'relative' }}>
                                 <p><strong>Най-Известната снимка</strong></p>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/Botev-foto.jpg" title="Христо Ботев, май 1875 г., Букурещ." />
+                                <FloatingImage src={images[0].src} title={images[0].title} onClick={() => onImageClick(0)} />
                                 <p>Най-известната фотография на Ботев е правена в ателието на фотографа Тома Хитров. От нея са запазени най-много копия.</p>
                                 {/* <Delimiter /> */}
                             </div>
                             <div style={{ overflow: 'auto', padding: '1rem 0', position: 'relative' }}>
                                 <p><strong>Най-ранната снимка</strong></p>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/B-Odesa.jpg" title="Христо Ботев с българи ученици в Одеса, краят на април 1865 г." />
+                                <FloatingImage src={images[1].src} title={images[1].title} onClick={() => onImageClick(1)} />
                                 <p>Първата, най-малко известна фотография на Христо Ботев.</p>
                                 <p>Ботев е първият, седнал в дясно.</p>
                                 {/* <Delimiter /> */}
                             </div>
                             <div style={{ overflow: 'auto', padding: '1rem 0', position: 'relative' }}>
                                 <p><strong>Христо Ботев със сподвижници</strong></p>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/sn_19botev.jpg" />
+                                <FloatingImage src={images[2].src} onClick={() => onImageClick(2)} />
                                 <p>Христо Ботев, Никола Славков и Иван Драсов, септември 1875 г., Букурещ</p>
                                 {/* <Delimiter /> */}
                             </div>
                             <div style={{ overflow: 'auto', paddingTop: '1rem', position: 'relative' }}>
                                 <p><strong>Последната снимка</strong></p>
-                                <FloatingImage src="https://muzeibotev.com/clients/152/files/images/sn_26bratya.jpg" />
+                                <FloatingImage src={images[3].src} onClick={() => onImageClick(3)} />
                                 <p>Христо Ботев и братята му Стефан, Кирил и Боян, април или май 1876 г.</p>
                                 <p>Toва е последната снимка на Христо Ботев.</p>
                             </div>
-
-
+                        </Fragment>
+                        <Fragment>
+                            <ModalBootstrap show={showModal} close={() => setShowModal(false)}>
+                                <CarouselBootstrap
+                                    items={images}
+                                    index={imageIndex}
+                                    type="gallery"
+                                ></CarouselBootstrap>
+                            </ModalBootstrap>
                         </Fragment>
                     </FloatingImagesPage>
                 </PostBody>
                 <PostAsideWrapper cardsData={hristoBotevCardsContent} currentPageTitle={pageTitle} />
             </Post>
-        </PageTransition>
-
+        </Fragment>
     );
 }
 

@@ -1,16 +1,23 @@
-import { FacebookRounded, Instagram, Phone, YouTube } from '@mui/icons-material';
+import { FacebookRounded } from '@mui/icons-material';
 import { Fragment } from 'react';
 import TwoColumnsView from '@/components/Layouts/TwoColumnsView';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import IconRounded from '@/components/UI/IconRounded';
-import { uploadsUrl } from '@/utils/data';
 import classes from './Contacts.module.scss';
+import houseMuseumIMG from '@/assets/uploads/muzey-7.jpg';
+import SEO from '@/components/SEO/SEO';
 
 function Contacts() {
     const pageTitle = 'Контакти';
     return (
         <Fragment>
-            <CarouselBootstrap items={[{ src: `${uploadsUrl}/muzey-5.jpg`, title: pageTitle }]}></CarouselBootstrap>
+            <SEO
+                title={pageTitle}
+                description="Контакти - Музей „Христо Ботев”"
+                image={houseMuseumIMG.src}
+                keywords="музей христо ботев контакти"
+            />
+            <CarouselBootstrap items={[{ src: houseMuseumIMG.src, title: pageTitle }]}></CarouselBootstrap>
             <TwoColumnsView history={{ nachalo: 'Начало', null: 'За нас', pageTitle: pageTitle }}>
                 <h2>{pageTitle}</h2>
                 <Fragment>
@@ -22,12 +29,10 @@ function Contacts() {
                     <br />
                     <p><strong>Социални мрежи:</strong></p>
                     <ul className={classes['social-networks-links']}>
-                        <li className={classes['icon-list-item']}><IconRounded link="facebook" icon={<FacebookRounded />} large /></li>
-                        <li className={classes['icon-list-item']}><IconRounded link="youtube" icon={<YouTube />} large /></li>
-                        <li className={classes['icon-list-item']}><IconRounded link="instagram" icon={<Instagram />} large /></li>
+                        <li className={classes['icon-list-item']}><IconRounded link="https://www.facebook.com/muzeibotev" icon={<FacebookRounded />} large /></li>
                     </ul>
                 </Fragment>
-                <iframe width="100%" height="300" style={{ border: 0 }} loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJO7O5TAW7qUARjnOnBrBd1g0&key=AIzaSyBXvSkO_vTWQzKm8gANoDT1i3j7XS80p9E"></iframe>
+                <iframe width="100%" height="300" style={{ border: 0 }} loading="lazy" allowFullScreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJO7O5TAW7qUARjnOnBrBd1g0&key=AIzaSyBXvSkO_vTWQzKm8gANoDT1i3j7XS80p9E"></iframe>
             </TwoColumnsView>
         </Fragment>
 

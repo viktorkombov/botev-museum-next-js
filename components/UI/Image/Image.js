@@ -40,7 +40,7 @@ const CustomImage = ({
 
   return (
     <div className={wrapperClasses} onClick={onImageClick}>
-      <NextImage {...props} alt={rec?.title} src={imgSrc} fill />
+      <NextImage {...props} alt={rec?.title || 'Изображение'} src={imgSrc} fill />
       {type === "gallery" && <h6 className={classes["image-title"]}>{rec.title}</h6>}
     </div>
   );

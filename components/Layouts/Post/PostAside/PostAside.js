@@ -6,24 +6,24 @@ import classes from './PostAside.module.scss';
 
 const PostAside = props => {
     const [posts, setPosts] = useState([]);
-    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const { error, sendRequest, clearError } = useHttpClient();
 
     useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                var url = new URL(baseUrl + 'api/posts')
-                var params = { 'columns': ['ID', 'Title', 'Subtitle', 'Date'], orderby: 'DATE', dir: 'DESC', limit: 5, notEqualTo: props.id }
-                url.search = new URLSearchParams(params).toString();
-
-                const responseData = await sendRequest(
-                    url
-                );
-                console.log(responseData);
-                setPosts(responseData);
-            } catch (err) { }
-        };
-        fetchPosts();
-
+        setTimeout(() => {
+            const fetchPosts = async () => {
+                try {
+                    var url = new URL(baseUrl + 'api/novini')
+                    var params = { 'columns': ['ID', 'Title', 'Subtitle', 'Date'], orderby: 'DATE', dir: 'DESC', limit: 5, notEqualTo: props.id }
+                    url.search = new URLSearchParams(params).toString();
+                    const responseData = await sendRequest(
+                        url
+                    );
+                    console.log(responseData)
+                    setPosts(responseData);
+                } catch (err) { }
+            };
+            fetchPosts();
+        }, 200)
     }, []);
 
     return (

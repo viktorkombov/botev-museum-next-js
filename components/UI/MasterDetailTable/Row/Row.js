@@ -45,9 +45,9 @@ const Row = (props) => {
                         </IconButton>
                     </TableCell>
                 )}
-                {columns.map((col) => {
+                {columns.map((col, i) => {
                     return col.id ? (
-                        <TableCell align="left" className={col.classesOuter}>
+                        <TableCell align="left" className={col.classesOuter} key={col.id}>
                             {!col.avatar ? (
                                 col.objectType ? (
                                     Object.values(row[col.id]).map((value) => (
@@ -67,7 +67,7 @@ const Row = (props) => {
                             )}
                         </TableCell>
                     ) : (
-                        <TableCell>
+                        <TableCell key={i}>
                             <div className={col.classesRowInner}>{col.template(row)}</div>
                         </TableCell>
                     );

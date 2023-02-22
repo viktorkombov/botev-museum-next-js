@@ -11,8 +11,7 @@ export default async function novini(req, res) {
             .then(([result]) => {
                 res.json(result);
             })
-            .catch();
-
+            .catch((err) => res.status(500).json({message: err}));
     } else if (req.method === 'POST') {
         const session = await getSession({ req: req });
 
@@ -22,6 +21,7 @@ export default async function novini(req, res) {
         }
         const record = req.body;
         // console.log(req.body)
+        console.log(record.title)
         const translatedTitle = getDate() + convertToLatin(record.title, '_');
 
         record.ID = translatedTitle;

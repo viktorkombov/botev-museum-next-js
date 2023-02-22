@@ -1,50 +1,47 @@
-import { Fragment } from 'react';
-import FloatingImage from '@/components/Layouts/FloatingImagesPage/FloatingImage';
+import { Fragment, useState } from 'react';
 import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/FloatingImagesPage';
 import Post from '@/components/Layouts/Post';
-import PostAside from '@/components/Layouts/Post/PostAside';
 import PostAsideWrapper from '@/components/Layouts/Post/PostAsideWrapper';
 import PostBody from '@/components/Layouts/Post/PostBody';
-import Card from '@/components/UI/Card';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import Gallery from '@/components/UI/Gallery';
 import { kaloferCardsContent, uploadsUrl } from '@/utils/data';
-import classes from './KaloferskaDantela.module.scss';
+
+import muzei_0_img from '@/assets/uploads/kaloferska-dantela.jpg';
+import muzei_1_img from '@/assets/uploads/kaloferska-dantela2.jpg';
+import muzei_2_img from '@/assets/uploads/kaloferska-dantela3.jpg';
+import muzei_3_img from '@/assets/uploads/kaloferska-dantela4.jpg';
+import muzei_4_img from '@/assets/uploads/kaloferska-dantela5.jpg';
+import SEO from '@/components/SEO/SEO';
+import ModalBootstrap from '@/components/UI/ModalBootstrap';
 
 function KaloferskaDantela() {
+    const [showModal, setShowModal] = useState(false);
+    const [imageIndex, setImageIndex] = useState(false);
+
     const pageTitle = 'Калоферска дантела';
+
+    const onImageClick = (index) => {
+        setImageIndex(index);
+        setShowModal(true);
+    };
     const images = [
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: `жовник и обществен деец, който учи в Одеса, съставя и превежда учебници, а майка му е от скромно калоферско семейство.[4] Освен Христо Ботев, двамата имат още осем деца: Ана (1850 – 1867), Петко (1852 – 1872), Стефан (1854 – 1890), Кирил (1856 – 1944), Тота (1859 – 1864), Генко (1861 – 1863), Генко (1863 – 1866) и Боян (1866 – 1885).[5]
-        Националният музей „Христо Ботев“ в Калофер Според някои източници Христо Ботев е роден в стая на калоферското училище, в която живеят родителите му. Малко по-късно в Калофер е построено ново училище и семейството наема къща на Генко Филов, в която Ботев прекарва първите няколко години от живота си. Тази къща е унищожена по време на Руско-турската война, но през 1940-те години е възстановена и превърната в Национален музей „Христо Ботев“.[6]
-        През 1854 година Ботьо Петков не успява да се споразумее с калоферската община за заплащането си и се премества в Карлово. Там семейството живее в къщата на майка му в Табашката махала, а Христо Ботев тръгва на училище, като негов учител е баща му. През 1858 година Ботьо Петков обвинява управата на карловската община, че се опитва да си присвои пари, завещани за училището, след което се връща в Калофер. Общината се опитва неуспешно да го настани в къща на живеещия в Цариград търговец Христо Тъпчилещов, след което семейството се настанява в къща на хаджи Нестор. След връщането им в Калофер Христо Ботев постъпва в местното трикласно училище, където учител е баща му.[7]
-        В Одеса и връщане в Калофер Датите са по Юлианския календар (стар стил), о`,
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280963.JPG",
-            title: "Никола Обретанов",
-        },
-        {
-            src: "https://muzeibotev.com/css/skins/custom/152/images/PC280921.JPG",
-            title: "Никола Войновски",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/PC280968.JPG",
-            title: "Никола Обретанов",
-        },
-        {
-            src: "https://muzeibotev.com/clients/152/files/images/nm_16.JPG",
-            title: "Никола Войновски",
-        },
+        { src: muzei_0_img.src, title: pageTitle },
+        { src: muzei_1_img.src },
+        { src: muzei_2_img.src },
+        { src: muzei_3_img.src },
+        { src: muzei_4_img.src }
     ];
+
     return (
         <Fragment>
-            <CarouselBootstrap type="withCard" items={[{ src: `${uploadsUrl}/kaloferska-dantela.jpg`, title: pageTitle }]}></CarouselBootstrap>
+            <SEO
+                title={pageTitle}
+                description="Повече от 100 години са изминали от появата на едно от най-фините женски ръкоделия, наречено с право „бялата магия” – калоферската дантела. За това време тя не само се е съхранила, но е претърпяла и развитие, като от занаят, осигуряващ прехраната на калоферки, се е превърнала в изкуство."
+                image={images[0].src}
+                keywords="калоферска дантела, калофер, дантела"
+            />
+            <CarouselBootstrap items={[images[0]]}></CarouselBootstrap>
             <Post>
                 <PostBody history={{ nachalo: 'Начало', null: 'Калофер', pageTitle: pageTitle }}>
                     <FloatingImagesPage>
@@ -57,7 +54,16 @@ function KaloferskaDantela() {
                             <p>През последното десетилетие, интересът към калоферската дантела отново се възражда. От 1999 г. ежегодно, на 15 август в деня на големия християнски празник -  Успение на Пресвета Богородица, се провежда Празникът на калоферската дантела. В него взимат участие плетачки на совалкова дантела от цялата страна, а също и гости от Англия, Шотландия и Белгия.</p>
                             <h4>Галерия:</h4>
                         </Fragment>
-                        <Gallery images={images} />
+                        <Fragment>
+                            <ModalBootstrap show={showModal} close={() => setShowModal(false)}>
+                                <CarouselBootstrap
+                                    items={images}
+                                    index={imageIndex}
+                                    type="gallery"
+                                ></CarouselBootstrap>
+                            </ModalBootstrap>
+                            <Gallery images={images} onImageClick={onImageClick} />
+                        </Fragment>
                     </FloatingImagesPage>
                 </PostBody>
                 <PostAsideWrapper cardsData={kaloferCardsContent} currentPageTitle={pageTitle} />

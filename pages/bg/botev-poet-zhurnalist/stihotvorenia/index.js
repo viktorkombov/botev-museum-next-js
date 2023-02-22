@@ -1,18 +1,31 @@
 import { Fragment } from 'react';
 import FloatingImagesPage from '@/components/Layouts/FloatingImagesPage/FloatingImagesPage';
 import Post from '@/components/Layouts/Post';
-import PostAside from '@/components/Layouts/Post/PostAside';
 import PostBody from '@/components/Layouts/Post/PostBody';
 import AccordionList from '@/components/UI/AccordionList';
-import Card from '@/components/UI/Card';
 import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import { poems } from '@/utils/poems';
-import classes from './BotevPoems.module.scss';
+import { botevPoetPublisherCardsContent } from '@/utils/data';
+import PostAsideWrapper from '@/components/Layouts/Post/PostAsideWrapper';
+import poet_1_img from '@/assets/uploads/proshtalno-pismo.png';
+import SEO from '@/components/SEO/SEO';
 
 function BotevPoems() {
+    const pageTitle = 'Ботеви стихотворения';
+
+    const images = [
+        { src: poet_1_img.src, title: pageTitle },
+    ];
+
     return (
         <Fragment>
-            <CarouselBootstrap type="withCard" items={[{ src: "https://muzeibotev.com/clients/152/files/images/PC280963.JPG", title: "150 години от смъртта на Ботев" }, { src: "https://muzeibotev.com/css/skins/custom/152/images/PC280921.JPG", title: "150 години от смъртта на Ботев" }]}></CarouselBootstrap>
+            <SEO
+                title={pageTitle}
+                description="През краткия си житейски път – 28 години - Христо Ботев написва 20 стихотворения"
+                image={images[0].src}
+                keywords="Ботев поет, ботев публицист, ботев вестници, ботев стихотворения"
+            />
+            <CarouselBootstrap items={[images[0]]}></CarouselBootstrap>
             <Post>
                 <PostBody>
                     <FloatingImagesPage>
@@ -22,30 +35,7 @@ function BotevPoems() {
                         </Fragment>
                     </FloatingImagesPage>
                 </PostBody>
-                <PostAside>
-                    <h3 className={classes.heading}>Виж още</h3>
-                    <Card
-                        light
-                        maxWidth="350px"
-                        title="Часовникът на Ботев"
-                        content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                        button="Виж повече..."
-                    />
-                    <Card
-                        light
-                        maxWidth="350px"
-                        title="Часовникът на Ботев"
-                        content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                        button="Виж повече..."
-                    />
-                    <Card
-                        light
-                        maxWidth="350px"
-                        title="Часовникът на Ботев"
-                        content="Разгледайте нашия сайт, за да научите повече за живота и делото на Ботев."
-                        button="Виж повече..."
-                    />
-                </PostAside>
+                <PostAsideWrapper cardsData={botevPoetPublisherCardsContent} currentPageTitle={pageTitle} />
             </Post>
         </Fragment>
 

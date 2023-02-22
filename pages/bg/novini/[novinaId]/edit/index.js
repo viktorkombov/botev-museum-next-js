@@ -41,13 +41,7 @@ const EditPost = props => {
 
     return (
         <Fragment>
-            <SectionHeader>
-
-            </SectionHeader>
-            <SectionHeader>
-
-            </SectionHeader>
-            <SectionHeader>
+            <SectionHeader style={{paddingTop: '12rem'}}>
                 <h2>Редактиране на публикация</h2>
             </SectionHeader>
             {post.ID && <PostEditContent isEdit formTitle="Редактиране на публикация" id={post.ID} title={post.Title} editorState={post.Content} coverImage={post.CoverImage} method="PUT" />}

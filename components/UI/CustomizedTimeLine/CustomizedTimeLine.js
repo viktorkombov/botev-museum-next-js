@@ -16,32 +16,35 @@ import Image from '../Image/Image';
 import classes from './CustomizedTimeLine.module.scss';
 import FloatingImage from '../../Layouts/FloatingImagesPage/FloatingImage';
 
-export default function CustomizedTimeline() {
+export default function CustomizedTimeline({images, ...props}) {
     const items = [{
         time: '25 декември 1847 г./6 януари 1848 г.',
         content: 'Христо Ботев се ражда в семейството на Ивана Стайкова Дрянкова и Ботьо Петков',
-        image: 'https://muzeibotev.com/css/skins/custom/152/images/PC280921.JPG',
-        imageTitle: 'Къщата на Христо Ботев'
+        image: images[0].src,
+        title: images[0].title,
+        imageIndex: 0
     },
     {
         time: '1853 г. – 1863 г.',
         content: 'Ботев е ученик в Калофер и Карлово',
-        image: ''
     },
     {
         time: 'октомври 1863 г.',
         content: 'Ботев заминава за Одеса',
-        image: ''
+        image: images[1].src,
+        title: images[1].title,
+        imageIndex: 1
     },
     {
         time: '19 ноември 1863 г.',
         content: 'Христо Ботев е приет като стипендиант във ІІ Одеска мъжка гимназия.',
-        image: ''
     },
     {
         time: '1865 г.',
         content: 'Ботев е изключен от гимназията',
-        image: ''
+        image: images[2].src,
+        title: images[2].title,
+        imageIndex: 2
     },
     {
         time: '1866 г.',
@@ -111,7 +114,9 @@ export default function CustomizedTimeline() {
     {
         time: '10 юни 1871 г.',
         content: 'Излиза бр. І на в. “Дума на българските емигранти”, първият Ботев вестник',
-        image: ''
+        image: images[3].src,
+        title: images[3].title,
+        imageIndex: 3
     },
     {
         time: 'април 1872 г.',
@@ -141,7 +146,9 @@ export default function CustomizedTimeline() {
     {
         time: '8 декември 1874 г.',
         content: 'Излиза брой І на в. “Знаме”, третият самостоятелен Ботев вестник.От него са отпечатани 27 броя',
-        image: ''
+        image: images[4].src,
+        title: images[4].title,
+        imageIndex: 4
     },
     {
         time: 'краят на декември 1874 г.',
@@ -196,7 +203,9 @@ export default function CustomizedTimeline() {
     {
         time: '5 май 1876 г.',
         content: 'Излиза брой 1 на в. “Нова България”, последният Ботев вестник',
-        image: ''
+        image: images[5].src,
+        title: images[5].title,
+        imageIndex: 5
     },
     {
         time: '16 май',
@@ -206,7 +215,9 @@ export default function CustomizedTimeline() {
     {
         time: '17 май',
         content: 'Ботевата четата слиза край Козлодуй',
-        image: ''
+        image: images[6].src,
+        title: images[6].title,
+        imageIndex: 6
     },
     {
         time: 'привечер на 17 май',
@@ -257,11 +268,11 @@ export default function CustomizedTimeline() {
                             <Typography sx={{ pb: '0.5rem', fontSize: '0.8rem !important' }} variant='body1'>
                                 <strong>{item.time}</strong>
                             </Typography>
-                            {item.image && <FloatingImage className={classes['wide-screen']} src={item.image} title={item.imageTitle} />}
+                            {item.image && <FloatingImage src={item.image} title={item.title} onClick={() => props.onImageClick(item.imageIndex)} className={classes['wide-screen']} />}
                             <Typography sx={{ fontSize: '0.8rem !important' }}>
                                 {item.content}
                             </Typography>
-                            {item.image && <FloatingImage className={classes['small-screen']} src={item.image} title={item.imageTitle} />}
+                            {item.image && <FloatingImage onClick={() => props.onImageClick(item.imageIndex)} className={classes['small-screen']} src={item.image} title={item.title} />}
                         </Paper>
                     </TimelineContent>
                 </TimelineItem>

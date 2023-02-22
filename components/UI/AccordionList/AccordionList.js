@@ -58,7 +58,7 @@ const AccordionList = props => {
                     >
                         <div className={classes['summary-background']}></div>
                         <Typography sx={{ zIndex: 1, width: '40%', flexShrink: 0, mr: '1rem', lineHeight: 'inherit'}}>{rec.title}</Typography>
-                        <Typography sx={{ color: 'text.secondary', fontSize: '0.8rem', lineHeight: 'inherit' }}>Букурещ, 1872 г.</Typography>
+                        {/* <Typography sx={{ color: 'text.secondary', fontSize: '0.8rem', lineHeight: 'inherit' }}>Букурещ, 1872 г.</Typography> */}
                     </AccordionSummary>
                     <AccordionDetails sx={{bgcolor: '#faf0e6', p: 0}}>
                         <AgedPaperReader record={rec}/>

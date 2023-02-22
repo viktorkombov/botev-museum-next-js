@@ -19,6 +19,7 @@ import Gallery from '@/components/UI/Gallery';
 import { baseUrl, kaloferCardsContent, uploadsUrl } from '@/utils/data';
 import classes from './KaloferHistory.module.scss';
 import ModalBootstrap from '@/components/UI/ModalBootstrap';
+import SEO from '@/components/SEO/SEO';
 
 function KaloferHistory() {
     const [showModal, setShowModal] = useState(false);
@@ -43,6 +44,12 @@ function KaloferHistory() {
 
     return (
         <Fragment>
+            <SEO
+                title="История на Калофер"
+                description="В скута на хайдушкия Балкан се гуши малко китно градче, прорязано от бистрите води на Тунджа, огласяно от песента на хилядите гайтанджийски чаркове, ухаещо на рози и здравец."
+                image={images[2].src}
+                keywords="kalofer, калофер, история на калофер"
+            />
             <CarouselBootstrap type="withCard" items={[images[0]]}></CarouselBootstrap>
             <Post>
                 <PostBody history={{ nachalo: 'Начало', null: 'Калофер', pageTitle: pageTitle }}>
@@ -76,7 +83,7 @@ function KaloferHistory() {
                                     type="gallery"
                                 ></CarouselBootstrap>
                             </ModalBootstrap>
-                            <Gallery images={images} onImageClick={onImageClick}/>
+                            <Gallery images={images} onImageClick={onImageClick} />
                         </Fragment>
                     </FloatingImagesPage>
                 </PostBody>

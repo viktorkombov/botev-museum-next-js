@@ -33,8 +33,8 @@ const Card = props => {
                 </section>
                 {(props.count || props.count === 0) && <section className={classes.count}>
                     <p>
-                        <div><AccessTime /><span>{convertToLocalDate(props.date)}</span></div>
-                        <div><RemoveRedEye /><span>{props.count}</span></div>
+                        <span><AccessTime /><span>{convertToLocalDate(props.date)}</span></span>
+                        <span><RemoveRedEye /><span>{props.count}</span></span>
                     </p>
                 </section>}
                 <section className={classes['button-wrapper']}>

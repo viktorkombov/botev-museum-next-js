@@ -3,17 +3,34 @@ import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import PageTransition from '@/components/UI/PageTransition';
 import { uploadsUrl } from '@/utils/data';
 import classes from './BotevPoetPublisher.module.scss';
+import poet_0_img from '@/assets/uploads/vestnik-zname.jpg';
+import poet_1_img from '@/assets/uploads/proshtalno-pismo.png';
+import SEO from '@/components/SEO/SEO';
+import { Fragment } from 'react';
 
 function BotevPoetPublisher() {
+    const pageTitle = 'Ботев - поет и публицист';
+
+    const images = [
+        { src: poet_0_img.src, title: pageTitle },
+        { src: poet_1_img.src },
+    ];
+
     return (
-        <PageTransition>
-            <CarouselBootstrap items={[{ src: "https://muzeibotev.com/css/skins/custom/152/images/PC280921.JPG", title: "Ботев - поет и публицист" }]} title="Ботев - поет и публицист" />
+        <Fragment>
+            <SEO
+                title={pageTitle}
+                description="„Само онзи, който е свободен, само той може да се нарече човек в пълня смисъл на думата; а който умре за свободата, той не умира само за своето отечество, а за сичкия свят.”"
+                image={images[0].src}
+                keywords="Ботев поет, ботев публицист, ботев вестници, ботев стихотворения"
+            />
+            <CarouselBootstrap items={[images[0]]}></CarouselBootstrap>
 
             <TwoCardsView className={classes.wrapper}
                 links={['/bg/botev-poet-zhurnalist/stihotvorenia', '/bg/botev-poet-zhurnalist/publitsistika']}
-                images={[`${uploadsUrl}/muzey-1.jpg`, `${uploadsUrl}/uchilishte-1.jpg`]}
-                titles={['Национален музей "Христо Ботев"', 'Даскал Ботево училище']}
-                contents={['В него се съхраняват експонати, свързани с живота и делото на Христо Ботев, неговото семейство и съратниците му ... ', ' Училището е изградено по инициатива на Ботьо Петков – бащата на Христо Ботев, изцяло с дарения и доброволната помощ на калоферци ... ']}
+                images={[images[1].src, images[0].src]}
+                titles={['Ботеви стихотворения', 'Ботеви вестници']}
+                contents={['Вижте всички стихотворения на Христо Ботев', 'Вестниците, с които Христо Ботев е свързан']}
             >
                 <h2>Ботев - поет и публицист</h2>
                 <section className={classes.content}>
@@ -24,7 +41,7 @@ function BotevPoetPublisher() {
                     <p>През краткия си житейски път – 28 години - Христо Ботев написва 20 стихотворения и издава 4 самостоятелни вестника.  Христо Ботев е съредактор и най-ценен сътрудник на Любен  Каравелов при издаването на вестниците „Свобода” и „Независимост”.</p>
                 </section>
             </TwoCardsView>
-        </PageTransition>
+        </Fragment>
     );
 }
 

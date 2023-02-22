@@ -3,13 +3,28 @@ import CarouselBootstrap from '@/components/UI/CarouselBootstrap';
 import SectionHeader from '@/components/UI/SectionHeader/SectionHeader';
 import classes from './WelcomeEN.module.scss';
 import Image from 'next/image';
+import welcome_0_img from '@/assets/uploads/biyust-hristo-botev.jpg';
+import welcome_1_img from '@/assets/uploads/botev1.jpg';
+import SEO from '@/components/SEO/SEO';
 
 function WelcomeEN() {
+    const pageTitle = 'Welcome';
+
+    const images = [
+        { src: welcome_0_img.src, title: pageTitle },
+        { src: welcome_1_img.src }
+    ];
+
     return (
         <Fragment>
-            <CarouselBootstrap items={[{ src: "https://static.dir.bg/uploads/images/2019/01/08/1633107/768x.jpg?_=1546936270", title: "Welcome" }]}></CarouselBootstrap>
-
-            <SectionHeader>
+            <SEO
+                title={pageTitle}
+                description="Welcome to Hristo Botev Museum!"
+                image={images[0].src}
+                keywords="hristo botev museum welcome"
+            />
+            <CarouselBootstrap items={[images[0]]} en></CarouselBootstrap>
+            <SectionHeader id="content">
                 <h2>Welcome to Hristo Botev Museum!</h2>
             </SectionHeader>
             <section className={classes.content}>
@@ -20,7 +35,7 @@ function WelcomeEN() {
                     Date information about museum objects and permanent exhibitions for the museum for upcoming events, the history and sights of Kalofer and captivating scenery. Believe will be helpful!
                 </i></p>
                 <div className={classes['image-wrapper']}>
-                    <Image src="https://muzeibotev.com/clients/152/files/images/934698_555896467786323_1042209498_n.jpg" alt="" fill />
+                    <Image src={images[1].src} alt="Image" fill />
                 </div>
             </section>
         </Fragment>

@@ -71,6 +71,8 @@
 }
 
 .first-section {
+    height: auto !important;
+    max-height: none !important;
     h1 {
         display: none;
         text-align: center;
