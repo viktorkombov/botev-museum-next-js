@@ -25,6 +25,9 @@ const baseUrl = "/api/auth/";
 process.env["NEXTAUTH_URL"] = "https://muzeibotev.com";
 process.env["NEXTAUTH_SECRET"] = "secret-santa";
 
+// process.env["NEXTAUTH_URL"] = "http://localhost:3000";
+// process.env["NEXTAUTH_SECRET"] = "secret-santa";
+
 (async () => {
     await nextApp.prepare();
 

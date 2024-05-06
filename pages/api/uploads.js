@@ -1,4 +1,5 @@
 import db from '@/utils/db';
+import { getAll } from '@/utils/mysqlHelpers';
 import formidable from 'formidable';
 import { promises as fs } from "fs";
 import { getSession } from 'next-auth/client';
@@ -70,7 +71,9 @@ export default async (req, res) => {
         });
     } else if (req.method === 'GET') {
         try {
-            db.execute(`SELECT * FROM uploads ORDER BY DATE DESC`).then(result => {
+            const columns = req.query.columns ? req.query.columns : '*';
+            const orderBy = req.query.orderby;
+            getAll('uploads', columns, orderBy, req.query.limit, req.query.dir, req.query.notEqualTo).then(result => {
                 res.status(200).json(result[0]);
             });
         } catch (error) {

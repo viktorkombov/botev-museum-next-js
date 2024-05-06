@@ -17,7 +17,7 @@ export const navigationItems = {
     }
 }
 
-export const baseUrl = 'https://muzeibotev.com/';
+export const baseUrl = 'https://muzeibotev.com/'; //'http://localhost:3000/'
 
 export const apiUrl = baseUrl + '/api';
 
