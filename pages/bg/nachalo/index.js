@@ -71,17 +71,17 @@ function Home(props) {
                                     <tr>
                                         <td><AccessTime /> Работно време</td>
                                         <td>-</td>
-                                        <td>всеки ден от 8.30 до 17.00 ч.</td>
+                                        <td>всеки ден от 8.30 до 17.30 ч.</td>
                                     </tr>
                                     <tr>
                                         <td><LocalActivity /> Билети</td>
                                         <td>-</td>
-                                        <td><div>за възрастни - 4 лв.,</div><div>за деца и пенсионери - 2 лв.</div></td>
+                                        <td><div>за възрастни - 5 лв.,</div><div>за учащи се и пенсионери - 3 лв.</div></td>
                                     </tr>
                                     <tr>
                                         <td><CampaignRounded /> Беседа</td>
                                         <td>-</td>
-                                        <td>15 лв. (30 мин.)</td>
+                                        <td>20 лв. (30 мин.)</td>
                                     </tr>
                                     <tr>
                                         <td></td>

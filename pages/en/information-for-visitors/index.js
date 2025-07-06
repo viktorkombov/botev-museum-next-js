@@ -51,14 +51,14 @@ export function getStaticProps() {
     };
 
     const ticketsTableData = [
-        createTicketsTableData('Students', '2,00 BGN'),
-        createTicketsTableData('Standard ticket', '4,00 BGN'),
-        createTicketsTableData('Pensioners', '2,00 BGN'),
-        createTicketsTableData('Family ticket', ' 9,00 BGN'),
+        createTicketsTableData('Students', '3,00 BGN'),
+        createTicketsTableData('Standard ticket', '5,00 BGN'),
+        createTicketsTableData('Pensioners', '3,00 BGN'),
+        createTicketsTableData('Family ticket', ' 12,00 BGN'),
         createTicketsTableData('Children under 7 years old and people with disabilities visit the museum free of charge.', 'FREE'),
-        createTicketsTableData('Guided tour - 30 min.', '15,00 BGN'),
-        createTicketsTableData('Guided tour - 60 min.', '20,00 BGN'),
-        createTicketsTableData('Documentary movie', '5,00 BGN')
+        createTicketsTableData('Guided tour - 30 min.', '20,00 BGN'),
+        createTicketsTableData('Guided tour - 60 min.', '30,00 BGN'),
+        createTicketsTableData('Documentary movie', '10,00 BGN')
     ]
     return {
         props: {

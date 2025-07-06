@@ -61,14 +61,15 @@ export function getStaticProps() {
     };
 
     const ticketsTableData = [
-        createTicketsTableData('Учащи се', '2,00 лв.'),
-        createTicketsTableData('Не учащи', '4,00 лв.'),
-        createTicketsTableData('Пенсионери', '2,00 лв'),
-        createTicketsTableData('Семеен билет (родители с лица в учебна възраст)', ' 9,00 лв.'),
+        createTicketsTableData('Учащи се', '3,00 лв.'),
+        createTicketsTableData('Не учащи', '5,00 лв.'),
+        createTicketsTableData('Пенсионери', '3,00 лв'),
+        createTicketsTableData('Семеен билет (родители с лица в учебна възраст)', ' 12,00 лв.'),
         createTicketsTableData('Лица, под 7 години  и такива в неравностойно положение', 'БЕЗПЛАТНО'),
-        createTicketsTableData('Екскурзоводска беседа  до 30мин', '15,00 лв'),
-        createTicketsTableData('Специализирана екскурзоводска беседа  до 60мин', '20,00 лв'),
-        createTicketsTableData('Видеофилм', '5,00 лв')
+        createTicketsTableData('Екскурзоводска беседа  до 30мин', '20,00 лв'),
+        createTicketsTableData('Специализирана екскурзоводска беседа до 60мин', '30,00 лв'),
+        createTicketsTableData('Обзорна беседа по историческите места в Калофер (по предварителна заявка)', '60,00 лв'),
+        createTicketsTableData('Прожекция на видеофилм', '10,00 лв')
     ]
 
     const rentTableData = [
